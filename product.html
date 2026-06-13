@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f9f9f9; color: #111827; }
+        a { text-decoration: none; color: inherit; }
+        .topbar { background: #f3f4f6; text-align: center; padding: 12px 20px; font-size: 13px; color: #374151; border-bottom: 1px solid #e5e7eb; }
+        .topbar a { color: #111827; font-weight: 700; }
+        .header { background: white; border-bottom: 1px solid #e5e7eb; }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .logo { font-size: 18px; font-weight: 700; letter-spacing: 1px; color: #111827; }
+        .nav { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+        .nav a { color: #374151; font-size: 13px; font-weight: 600; }
+        .breadcrumb { margin: 18px 0 0; font-size: 13px; color: #6b7280; }
+        .breadcrumb a { color: #111827; }
+        .page-content { max-width: 1200px; margin: 0 auto; padding: 34px 40px 60px; }
+        .product-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .product-image-card { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 22px; box-shadow: 0 18px 40px rgba(15,23,42,0.06); display: flex; justify-content: center; align-items: center; }
+        .product-image-card img { width: auto; max-width: 320px; max-height: 360px; object-fit: contain; border-radius: 24px; }
+        .product-summary { display: flex; flex-direction: column; gap: 24px; }
+        .product-title { font-size: clamp(2rem, 3vw, 3rem); font-weight: 700; color: #111827; line-height: 1.05; }
+        .product-rating { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 14px; color: #111827; }
+        .product-rating span { display: inline-flex; align-items: center; gap: 4px; }
+        .product-rating .star { color: #f59e0b; font-size: 18px; }
+        .product-dosage { font-size: 15px; color: #6b7280; font-weight: 600; }
+        .price-tag { background: #e5f2ff; border: 1px solid #dbeffe; border-radius: 22px; display: inline-flex; align-items: center; padding: 12px 18px; gap: 14px; }
+        .price-tag span:first-child { font-size: 13px; color: #2563eb; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+        .product-price { font-size: 44px; font-weight: 800; color: #0f4cba; }
+        .product-meta { display: grid; gap: 16px; }
+        .quantity-selector { display: inline-flex; align-items: center; gap: 12px; background: #f3f4f6; border-radius: 999px; padding: 8px 12px; width: fit-content; }
+        .qty-btn { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #d1d5db; background: white; color: #111827; display: grid; place-items: center; cursor: pointer; font-size: 20px; font-weight: 700; }
+        .qty-btn:hover { border-color: #0f4cba; color: #0f4cba; }
+        #quantityValue { min-width: 24px; text-align: center; font-weight: 700; font-size: 15px; }
+        .product-note { color: #6b7280; font-size: 14px; max-width: 520px; }
+        .product-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; padding: 16px 24px; font-weight: 700; font-size: 14px; cursor: pointer; border: none; }
+        .btn-primary { background: #0f4cba; color: white; }
+        .btn-secondary { background: white; color: #111827; border: 1px solid #e5e7eb; }
+        .product-description { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; line-height: 1.8; color: #4b5563; box-shadow: 0 18px 40px rgba(15,23,42,0.05); }
+        .feature-list { display: grid; gap: 14px; margin-top: 14px; }
+        .feature-item { display: flex; gap: 12px; align-items: flex-start; }
+        .feature-item span { color: #0f4cba; font-size: 18px; line-height: 1; margin-top: 2px; }
+        .feature-item p { margin: 0; color: #4b5563; }
+        .who-we-are { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin: 80px 0 60px; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
+        .who-we-are-image { width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; }
+        .who-we-are-content h2 { font-size: 42px; font-weight: 800; color: #111827; margin-bottom: 28px; }
+        .who-we-are-content p { font-size: 15px; line-height: 1.8; color: #4b5563; margin-bottom: 20px; }
+        .who-we-are-content p:last-child { margin-bottom: 0; }
+        footer { margin-top: 60px; padding: 22px 40px; background: #111827; color: #d1d5db; text-align: center; font-size: 13px; }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 980px) {
+            .product-detail { grid-template-columns: 1fr; }
+            .header-content { padding: 18px 20px; }
+            .page-content { padding: 24px 20px 56px; }
+            .who-we-are { grid-template-columns: 1fr; gap: 30px; padding: 30px 20px; margin: 50px 0 40px; }
+            .who-we-are-content h2 { font-size: 32px; }
+            .footer-grid { flex-direction: column; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        Need help? Text us, and a team member will reply in minutes <a href="tel:+18187911343">+1 (818) 791-1343</a>
+    </div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">TIMER PEPTIDES</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="shop.html">All Peptides</a>
+                <a href="coas.html">COAs</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="page-content">
+        <div class="breadcrumb"><a href="index.html">Home</a> / <span id="productBreadcrumb">Product</span></div>
+        <section class="product-detail">
+            <div class="product-image-card">
+                <img id="productImage" src="" alt="Product Image">
+            </div>
+            <div class="product-summary">
+                <div>
+                    <p class="product-dosage" id="productDosage">Dosage</p>
+                    <h1 class="product-title" id="productName">Peptide Name</h1>
+                    <div class="product-rating" aria-label="5 out of 5 stars">
+                        <span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                            <span class="star">★</span>
+                        </span>
+                        <span>5.0 rating</span>
+                    </div>
+                </div>
+                <div class="price-tag">
+                    <span>Price</span>
+                    <div class="product-price" id="productPrice">$0.00</div>
+                </div>
+                        <div class="product-buttons">
+                    <button id="addToCartBtn" class="btn btn-primary" type="button">Add to Cart</button>
+                    <a href="shop.html" class="btn btn-secondary">Continue Shopping</a>
+                </div>
+                <div class="product-meta">
+                    <div class="quantity-selector">
+                        <button class="qty-btn" id="qtyMinus" type="button">−</button>
+                        <span id="quantityValue">1</span>
+                        <button class="qty-btn" id="qtyPlus" type="button">+</button>
+                    </div>
+                    <div class="product-note">All products are intended strictly for research and laboratory use only.</div>
+                </div>
+                <div class="product-description" id="productDescription">
+                    <p>Discover physician-grade quality, ultra-pure peptide formulations designed for research use. Each vial is batch tested and manufactured in the USA to ensure consistent potency and stability.</p>
+                    <div class="feature-list">
+                        <div class="feature-item"><span>✓</span><p>USA-made and batch tested for quality.</p></div>
+                        <div class="feature-item"><span>✓</span><p>Fast, discreet shipping available.</p></div>
+                        <div class="feature-item"><span>✓</span><p>Designed for research and laboratory use only.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="page-content">
+        <div class="who-we-are">
+            <img src="./image1_files/hero-experiment.jpeg" alt="Timer Peptides Laboratory" class="who-we-are-image">
+            <div class="who-we-are-content">
+                <h2>Who We Are</h2>
+                <p>Timer Peptides is a USA-based manufacturer committed to producing the highest-quality, physician-grade peptides available. Our facility operates under strict quality-control standards, with every batch independently tested before shipment.</p>
+                <p>We believe our customers deserve reliable, consistent compounds. That is why we stand behind every product we ship — from synthesis to your door in as little as two days.</p>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">◆</div>
+                <div>
+                    <div class="footer-brand-title">TIMER PEPTIDES</div>
+                    <div class="footer-brand-text">High-purity, physician-grade peptides manufactured and batch-tested in the USA.</div>
+                    <a class="footer-phone" href="tel:+18187911343">+1 (818) 791-1343</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Navigation</div>
+                <a href="index.html">Home</a>
+                <a href="shop.html">All Peptides</a>
+                <a href="coas.html">COAs</a>
+                <a href="company.html">Our Company</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Legal</div>
+                <a href="legal.html">Legal</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Timer Peptides. All rights reserved. For Research Use Only.</div>
+    </footer>
+    <script>
+        function getParam(name) {
+            return new URLSearchParams(window.location.search).get(name) || '';
+        }
+        const productName = decodeURIComponent(getParam('product')) || 'Peptide Product';
+        const productPrice = parseFloat(getParam('price')) || 0;
+        const productDosage = decodeURIComponent(getParam('dosage')) || 'Standard';
+        const productImage = decodeURIComponent(getParam('image')) || './image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg';
+
+        const productNameEl = document.getElementById('productName');
+        const productDosageEl = document.getElementById('productDosage');
+        const productPriceEl = document.getElementById('productPrice');
+        const productImageEl = document.getElementById('productImage');
+        const breadcrumbEl = document.getElementById('productBreadcrumb');
+        const qtyMinus = document.getElementById('qtyMinus');
+        const qtyPlus = document.getElementById('qtyPlus');
+        const quantityValue = document.getElementById('quantityValue');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+
+        let quantity = 1;
+
+        function formatPrice(value) {
+            return '$' + value.toFixed(2);
+        }
+
+        function updateDisplay() {
+            productNameEl.textContent = productName;
+            productDosageEl.textContent = productDosage;
+            productPriceEl.textContent = formatPrice(productPrice);
+            productImageEl.src = productImage;
+            productImageEl.alt = productName;
+            breadcrumbEl.textContent = productName;
+            quantityValue.textContent = quantity;
+        }
+
+        function buildPaymentUrl() {
+            const paymentUrl = new URL('payment.html', window.location.href);
+            paymentUrl.searchParams.set('product', productName);
+            paymentUrl.searchParams.set('price', productPrice.toFixed(2));
+            paymentUrl.searchParams.set('dosage', productDosage);
+            paymentUrl.searchParams.set('quantity', String(quantity));
+            return paymentUrl.href;
+        }
+
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem('cartItems') || '[]');
+        }
+
+        function saveCartItems(items) {
+            localStorage.setItem('cartItems', JSON.stringify(items));
+        }
+
+        function addToCart() {
+            const items = getCartItems();
+            const itemId = productName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            const existing = items.find(i => i.id === itemId);
+            if (existing) {
+                existing.quantity = Math.max(1, existing.quantity + quantity);
+            } else {
+                items.push({
+                    id: itemId,
+                    name: productName,
+                    price: productPrice,
+                    dosage: productDosage,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            saveCartItems(items);
+            window.location.href = 'cart.html';
+        }
+
+        function handleQuantity(delta) {
+            quantity = Math.max(1, quantity + delta);
+            quantityValue.textContent = quantity;
+        }
+
+        qtyMinus.addEventListener('click', () => handleQuantity(-1));
+        qtyPlus.addEventListener('click', () => handleQuantity(1));
+        addToCartBtn.addEventListener('click', addToCart);
+
+        updateDisplay();
+    </script>
+</body>
+</html>

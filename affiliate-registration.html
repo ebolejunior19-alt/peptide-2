@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affiliate Registration - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2ff; color: #111827; }
+        .page-wrap { max-width: 1000px; margin: 0 auto; padding: 40px 24px; }
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
+        .topbar a { color: #004aad; text-decoration: none; font-weight: 700; }
+        h1 { font-size: 42px; margin-bottom: 14px; color: #111827; }
+        p { color: #4b5563; line-height: 1.8; margin-bottom: 24px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        .info-panel, .form-panel { background: white; border-radius: 24px; padding: 32px; border: 1px solid #dbeafe; box-shadow: 0 20px 50px rgba(59,130,246,0.08); }
+        .info-panel h2, .form-panel h2 { font-size: 24px; margin-bottom: 16px; }
+        .info-list { list-style: none; display: grid; gap: 16px; margin-top: 16px; }
+        .info-list li { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 16px; color: #334155; }
+        .form-group { display: grid; gap: 12px; margin-bottom: 18px; }
+        label { font-size: 14px; color: #374151; font-weight: 600; }
+        input, select, textarea { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 14px; background: #f8fafc; font-size: 14px; color: #111827; }
+        textarea { resize: vertical; min-height: 120px; }
+        .submit-button { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 14px; border: none; background: #004aad; color: white; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .submit-button:hover { background: #00357a; }
+        .support-note { margin-top: 20px; color: #6b7280; font-size: 14px; }
+        @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 820px) { .footer-grid { flex-direction: column; gap: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <div class="topbar">
+            <div>
+                <span style="font-weight:700; color:#004aad;">Affiliate Registration</span>
+                <p style="color:#4b5563; margin-top:8px;">Sign up to start referring customers and earning commissions.</p>
+            </div>
+            <a href="index.html">Back to Home</a>
+        </div>
+
+        <div class="grid">
+            <div class="info-panel">
+                <h2>Why join our affiliate program?</h2>
+                <ul class="info-list">
+                    <li>Earn commissions on every sale from your referral link.</li>
+                    <li>Access exclusive banners, creatives, and marketing material.</li>
+                    <li>Receive fast payouts and performance analytics.</li>
+                </ul>
+                <p class="support-note">After submitting your registration, our affiliate team will review your application and email your account details.</p>
+            </div>
+
+            <div class="form-panel">
+                <h2>Apply now</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input id="fullName" type="text" placeholder="Jane Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input id="email" type="email" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="website">Website / Social profile</label>
+                        <input id="website" type="text" placeholder="https://yourdomain.com or @instagram">
+                    </div>
+                    <div class="form-group">
+                        <label for="audience">Audience size</label>
+                        <select id="audience">
+                            <option>Choose one</option>
+                            <option>Under 10K</option>
+                            <option>10K–50K</option>
+                            <option>50K–200K</option>
+                            <option>200K+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="referral">How will you promote our products?</label>
+                        <textarea id="referral" placeholder="Email marketing, social media, private coaching, etc."></textarea>
+                    </div>
+                    <button type="button" class="submit-button">Submit Application</button>
+                </form>
+                <p class="support-note">Need help? Contact support at <a href="mailto:partners@factorpeptides.com">partners@factorpeptides.com</a>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

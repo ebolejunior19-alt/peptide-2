@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #eef2ff; color: #111827; }
+        .page-wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header a { color: #004aad; text-decoration: none; font-weight: 700; }
+        h1 { font-size: 36px; margin-bottom: 12px; }
+        p { color: #475569; line-height: 1.8; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .panel { background: white; border-radius: 24px; padding: 32px; border: 1px solid #dbeafe; box-shadow: 0 18px 40px rgba(59,130,246,0.08); }
+        .panel h2 { font-size: 24px; margin-bottom: 16px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-weight: 700; color: #334155; }
+        input { width: 100%; padding: 14px 16px; border-radius: 14px; border: 1px solid #cbd5e1; background: #f8fafc; font-size: 14px; color: #0f172a; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; border-radius: 14px; border: none; cursor: pointer; font-weight: 700; background: #004aad; color: white; transition: background 0.2s; }
+        .btn:hover { background: #00357a; }
+        .secondary { background: #f3f4f6; color: #111827; }
+        .secondary:hover { background: #e5e7eb; }
+        .info-list { margin-top: 16px; color: #475569; line-height: 1.8; }
+        .info-list li { margin-bottom: 10px; }
+        @media (max-width: 780px) { .grid { grid-template-columns: 1fr; } }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 780px) { .footer-grid { flex-direction: column; gap: 24px; } }
+    </style>
+</head>
+<body>
+    <script>
+        function redirectIfSignedIn() {
+            const currentUser = JSON.parse(localStorage.getItem('peptideCurrentUser') || 'null');
+            if (currentUser) {
+                window.location.href = 'profile.html';
+            }
+        }
+
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            const message = document.getElementById('loginMessage');
+
+            if (!email || !password) {
+                message.textContent = 'Please enter both your email and password.';
+                message.style.display = 'block';
+                return;
+            }
+
+            const accounts = JSON.parse(localStorage.getItem('peptideAccounts') || '[]');
+            if (!accounts.length) {
+                message.textContent = 'No account found. Please create an account first.';
+                message.style.display = 'block';
+                return;
+            }
+
+            const matching = accounts.find(acc => acc.email === email && acc.password === password);
+            if (!matching) {
+                message.textContent = 'Login failed. Check your email and password.';
+                message.style.display = 'block';
+                return;
+            }
+
+            localStorage.setItem('peptideCurrentUser', JSON.stringify(matching));
+            window.location.href = 'profile.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', redirectIfSignedIn);
+    </script>
+    <div class="page-wrap">
+        <div class="header">
+            <div>
+                <h1>Account Login</h1>
+                <p>Sign in to your Timer Peptides account to view your profile, orders, and buy products faster.</p>
+            </div>
+            <a href="index.html">Back to Home</a>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <h2>Login</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input id="loginEmail" type="email" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" type="password" placeholder="Enter password">
+                </div>
+                <button class="btn" onclick="loginUser()">Sign In</button>
+                <p id="loginMessage" style="margin-top:16px; color:#dc2626; display:none;"></p>
+                <p class="info-list">Don't have an account? <a href="register.html" class="secondary btn" style="display:inline-flex; margin-top:12px;">Create Account</a></p>
+            </div>
+            <div class="panel">
+                <h2>Account benefits</h2>
+                <ul class="info-list">
+                    <li>Faster checkout and order tracking.</li>
+                    <li>Saved shipping and billing details.</li>
+                    <li>Access order history and exclusive offers.</li>
+                    <li>Manage subscriptions and account preferences.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

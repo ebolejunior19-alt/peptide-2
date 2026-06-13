@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f7fb; color: #111827; }
+        a { color: inherit; text-decoration: none; }
+        .topbar { background: #f3f4f6; text-align: center; padding: 12px 20px; font-size: 13px; color: #374151; border-bottom: 1px solid #e5e7eb; }
+        .topbar a { color: #111827; font-weight: 700; }
+        .header { background: white; border-bottom: 1px solid #e5e7eb; }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+        .logo-box { width: 32px; height: 32px; background: linear-gradient(135deg,#004aad,#0066ff); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; }
+        .nav { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+        .nav a { color: #374151; font-size: 14px; font-weight: 600; transition: color 0.2s; }
+        .nav a:hover { color: #004aad; }
+        .header-icons { display: flex; gap: 14px; align-items: center; }
+        .header-icons a { color: inherit; text-decoration: none; font-size: 18px; }
+        .header-icons span { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; background: #f3f4f6; transition: background 0.2s; }
+        .header-icons a:hover span { background: #e5e7eb; }
+        .cart-container { max-width: 900px; margin: 60px auto; padding: 0 40px; }
+        .cart-header { margin-bottom: 40px; }
+        .cart-header h1 { font-size: 38px; margin-bottom: 10px; }
+        .cart-header p { color: #6b7280; font-size: 15px; }
+        .empty-state { text-align: center; padding: 80px 40px; background: white; border-radius: 16px; border: 1px solid #e5e7eb; }
+        .empty-icon { font-size: 80px; margin-bottom: 20px; opacity: 0.3; }
+        .empty-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; color: #111827; }
+        .empty-text { font-size: 15px; color: #6b7280; margin-bottom: 30px; }
+        .empty-btn { display: inline-block; background: #004aad; color: white; padding: 12px 32px; border-radius: 12px; font-weight: 700; transition: all 0.2s; }
+        .empty-btn:hover { background: #003a87; transform: translateY(-2px); }
+        .cart-items { background: white; border-radius: 16px; border: 1px solid #e5e7eb; overflow: hidden; margin-bottom: 30px; }
+        .cart-item { display: grid; grid-template-columns: 100px 1fr auto; gap: 20px; padding: 20px; border-bottom: 1px solid #e5e7eb; align-items: center; }
+        .cart-item:last-child { border-bottom: none; }
+        .cart-item-image { width: 100px; height: 100px; background: #f8fafc; border-radius: 12px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .cart-item-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .cart-item-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .cart-item-meta { font-size: 13px; color: #6b7280; margin-bottom: 10px; }
+        .cart-item-controls { display: flex; gap: 8px; align-items: center; }
+        .qty-btn { width: 34px; height: 34px; border: 1px solid #e5e7eb; border-radius: 8px; background: white; cursor: pointer; font-weight: 700; transition: all 0.2s; }
+        .qty-btn:hover { background: #f3f4f6; }
+        .remove-btn { background: #fee2e2; color: #dc2626; padding: 6px 12px; border: none; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .remove-btn:hover { background: #fecaca; }
+        .price { font-size: 16px; font-weight: 700; color: #004aad; min-width: 80px; text-align: right; }
+        .cart-summary { background: #f8fafc; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+        .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; }
+        .summary-row strong { color: #111827; }
+        .summary-row.total { font-size: 18px; font-weight: 700; color: #004aad; border-top: 1px solid #e5e7eb; padding-top: 12px; margin-top: 12px; }
+        .checkout-actions { display: flex; gap: 12px; }
+        .btn { padding: 12px 28px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+        .btn-primary { background: #004aad; color: white; flex: 1; }
+        .btn-primary:hover { background: #003a87; transform: translateY(-2px); }
+        .btn-secondary { background: #e5e7eb; color: #111827; flex: 1; }
+        .btn-secondary:hover { background: #d1d5db; }
+        @media (max-width: 720px) {
+            .header-content { padding: 16px 20px; flex-direction: column; align-items: stretch; }
+            .nav { justify-content: center; }
+            .cart-container { padding: 0 20px; margin: 30px auto; }
+            .cart-item { grid-template-columns: 80px 1fr; gap: 16px; }
+            .cart-item-controls { flex-direction: column; align-items: flex-start; }
+            .price { text-align: left; }
+            .checkout-actions { flex-direction: column; }
+        }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 720px) { .footer-grid { flex-direction: column; gap: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="topbar">Need help? Text us, and a team member will reply in minutes <a href="tel:+18187911343">+1 (818) 791-1343</a></div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo"><span class="logo-box">◆</span> TIMER PEPTIDES</a>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="payment.html">Checkout</a>
+            </nav>
+            <div class="header-icons">
+                <a href="login.html"><span>👤</span></a>
+                <a href="cart.html"><span>🛒</span></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1>Your Cart</h1>
+        </div>
+
+        <div id="cartContent"></div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return '$' + parseFloat(value || 0).toFixed(2);
+        }
+
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem('cartItems') || '[]');
+        }
+
+        function saveCartItems(items) {
+            localStorage.setItem('cartItems', JSON.stringify(items));
+        }
+
+        function renderCart() {
+            const items = getCartItems();
+            const cartContent = document.getElementById('cartContent');
+
+            if (!items || items.length === 0) {
+                cartContent.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🛒</div>
+                        <h2 class="empty-title">Your cart is empty</h2>
+                        <p class="empty-text">Add some physician-grade peptides to get started.</p>
+                        <a href="shop.html" class="empty-btn">Browse All Peptides</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let subtotal = 0;
+            let itemsHtml = '';
+
+            items.forEach(item => {
+                const itemTotal = (item.price || 0) * (item.quantity || 1);
+                subtotal += itemTotal;
+                itemsHtml += `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image || ''}" alt="${item.name}">
+                        </div>
+                        <div>
+                            <h3>${item.name}</h3>
+                            <div class="cart-item-meta">${item.dosage || ''} · ${formatCurrency(item.price)} x ${item.quantity}</div>
+                            <div class="cart-item-controls">
+                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">−</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                                <button class="remove-btn" onclick="removeItem('${item.id}')">Remove</button>
+                            </div>
+                        </div>
+                        <div class="price">${formatCurrency(itemTotal)}</div>
+                    </div>
+                `;
+            });
+
+            const tax = subtotal * 0.08;
+            const total = subtotal + tax;
+
+            cartContent.innerHTML = `
+                <div class="cart-items">${itemsHtml}</div>
+                <div class="cart-summary">
+                    <div class="summary-row"><span>Subtotal</span><strong>${formatCurrency(subtotal)}</strong></div>
+                    <div class="summary-row"><span>Tax (8%)</span><strong>${formatCurrency(tax)}</strong></div>
+                    <div class="summary-row total"><span>Estimated Total</span><strong>${formatCurrency(total)}</strong></div>
+                </div>
+                <div class="checkout-actions">
+                    <button class="btn btn-primary" onclick="checkout()">Proceed to Checkout</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='shop.html'">Continue Shopping</button>
+                </div>
+            `;
+        }
+
+        function changeQty(itemId, delta) {
+            let items = getCartItems();
+            const item = items.find(i => i.id === itemId);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + delta);
+                saveCartItems(items);
+                renderCart();
+            }
+        }
+
+        function removeItem(itemId) {
+            let items = getCartItems();
+            items = items.filter(i => i.id !== itemId);
+            saveCartItems(items);
+            renderCart();
+        }
+
+        function checkout() {
+            window.location.href = 'payment.html';
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

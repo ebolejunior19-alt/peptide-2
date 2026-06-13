@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Timer Peptides</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f9f9f9; }
+        .topbar { background: #f3f4f6; text-align: center; padding: 12px 20px; font-size: 13px; color: #374151; border-bottom: 1px solid #e5e7eb; }
+        .topbar a { color: #111827; font-weight: 700; text-decoration: none; }
+        .header { background: white; border-bottom: 1px solid #e5e7eb; padding: 12px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+        .logo-section { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #111827; }
+        .logo-box { background: linear-gradient(135deg, #004AAD, #0066ff); width: 36px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
+        .logo { font-size: 16px; font-weight: 700; letter-spacing: 1px; color: #111827; white-space: nowrap; }
+        .nav-search-container { display: flex; align-items: center; gap: 30px; flex: 1; }
+        .nav { display: flex; gap: 30px; align-items: center; }
+        .nav a { text-decoration: none; color: #374151; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+        .nav a:hover { color: #004AAD; }
+        .search-container { position: relative; width: 280px; }
+        .search-box { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 999px; padding: 10px 16px; font-size: 13px; width: 100%; transition: border-color 0.2s; }
+        .search-box:focus { outline: none; border-color: #004AAD; }
+        .header-icons { display: flex; gap: 16px; align-items: center; font-size: 18px; cursor: pointer; }
+        .header-icons span { color: #374151; transition: color 0.2s; }
+        .header-icons span:hover { color: #004AAD; }
+        .cart-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 6px; font-size: 11px; font-weight: 700; color: white; background: #dc2626; border-radius: 999px; position: absolute; top: -6px; right: -6px; border: 2px solid white; }
+        main { max-width: 1400px; margin: 0 auto; padding: 40px; }
+        .checkout-header { margin-bottom: 40px; }
+        .breadcrumb { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; color: #111827; margin-bottom: 30px; }
+        .breadcrumb span { color: #d1d5db; }
+        .breadcrumb .step-active { color: #004AAD; }
+        .breadcrumb .step-inactive { color: #9ca3af; }
+        .checkout-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; }
+        .form-section { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .order-summary { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); height: fit-content; }
+        .section-title { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; font-size: 14px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; font-family: inherit; }
+        input:focus, select:focus { outline: none; border-color: #004AAD; box-shadow: 0 0 0 3px rgba(0, 74, 173, 0.1); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-row.three { grid-template-columns: repeat(3, 1fr); }
+        .product-item { padding: 15px 0; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; }
+        .product-item:last-child { border-bottom: none; }
+        .product-info { }
+        .product-name { font-weight: 600; color: #111827; margin-bottom: 4px; font-size: 14px; }
+        .product-qty { color: #6b7280; font-size: 12px; }
+        .product-price { color: #111827; font-weight: 700; text-align: right; font-size:16px; }
+        .product-qty { color: #6b7280; font-size: 13px; }
+        .summary-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 14px; }
+        .summary-row .label { color: #6b7280; }
+        .summary-row .amount { font-weight:700; color:#111827; }
+        .summary-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 14px; }
+        .summary-total { font-size: 18px; font-weight: 700; color: #111827; border-top: 2px solid #e5e7eb; padding-top: 16px; margin-top: 16px; display: flex; justify-content: space-between; }
+        .summary-total .amount { color: #004AAD; }
+        h2 { font-size: 20px; color: #111827; margin-bottom: 20px; }
+        .btn { padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; font-size: 16px; transition: all 0.2s; width: 100%; }
+        .btn-primary { background: #004AAD; color: white; margin-top: 30px; }
+        .btn-primary:hover { background: #003A87; }
+        .btn-secondary { background: #f3f4f6; color: #111827; margin-top: 15px; }
+        .btn-secondary:hover { background: #e5e7eb; }
+        .step-content { display: none; }
+        .step-content.active { display: block; }
+        .payment-header { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+        .card-logos { display:flex; gap:10px; align-items:center; }
+        .card-logos img { height:28px; width:auto; display:block; }
+        footer.site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        footer.site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        footer.site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 768px) {
+            .checkout-grid { grid-template-columns: 1fr; gap: 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-row.three { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 900px) {
+            .footer-grid { flex-direction: column; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        Need help? Text us, and a team member will reply in minutes <a href="tel:+18187911343">+1 (818) 791-1343</a>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo-section">
+                <div class="logo-box">◆</div>
+                <div class="logo">TIMER PEPTIDES</div>
+            </a>
+            <div class="nav-search-container">
+                <nav class="nav">
+                    <a href="index.html#home">Home</a>
+                    <a href="shop.html">All Peptides</a>
+                    <a href="coas.html">COAs</a>
+                    <a href="company.html">Our Company</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+                <div class="search-container">
+                    <input type="text" class="search-box" placeholder="Search peptides...">
+                </div>
+            </div>
+            <div class="header-icons">
+                <a href="login.html" style="color: inherit; text-decoration: none;"><span>👤</span></a>
+                <a href="cart.html" class="cart-link" style="color: inherit; text-decoration: none; position: relative;">
+                    <span>🛒</span>
+                    <span id="cartBadge" class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="checkout-header">
+            <div class="breadcrumb">
+                <span id="step1Label" class="step-active">1. Contact & Shipping</span>
+                <span>→</span>
+                <span id="step2Label" class="step-inactive">2. Shipping</span>
+                <span>→</span>
+                <span id="step3Label" class="step-inactive">3. Payment</span>
+            </div>
+        </div>
+
+        <div class="checkout-grid">
+            <div class="form-section">
+                <!-- Step 1: Contact & Shipping -->
+                <div id="step1" class="step-content active">
+                    <h2>Contact & Shipping</h2>
+                    <form id="contactShippingForm">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+
+                        <div class="form-row three">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" id="zip" name="zip" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country" name="country" required>
+                                    <option selected>United States</option>
+                                    <option>Canada</option>
+                                    <option>United Kingdom</option>
+                                    <option>Australia</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone (optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+1 555 000 0000">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="goToShipping()">Continue to Shipping</button>
+                    </form>
+                </div>
+
+                <!-- Step 2: Shipping -->
+                <div id="step2" class="step-content">
+                    <h2>Shipping Method</h2>
+                    <form id="shippingForm">
+                        <div class="form-group">
+                            <label style="font-weight:700; margin-bottom:12px; display:block;">Choose a shipping method</label>
+                            <label style="display:flex; align-items:center; justify-content:space-between; border:1px solid #d1d5db; border-radius:8px; padding:14px; background:#f8fafc;">
+                                <div>
+                                    <input type="radio" name="shippingMethod" value="express" checked style="margin-right:12px;"> Express Shipping (1–2 Business days)
+                                </div>
+                                <div style="font-weight:700;">$15.00</div>
+                            </label>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" onclick="goToPayment()">Continue to Payment</button>
+                        <div style="text-align:center; margin-top:18px;"><a href="#" onclick="goToStep1(); return false;" style="color:#6b7280; text-decoration:none;">← Back to contact info</a></div>
+                    </form>
+                </div>
+
+                <!-- Step 3: Payment -->
+                <div id="step3" class="step-content">
+                    <div class="payment-header">
+                    <h2>Payment Information</h2>
+                    <div class="card-logos">
+                        <img src="image1_files/visa.svg" alt="Visa">
+                        <img src="image1_files/mastercard.svg" alt="Mastercard">
+                        <img src="image1_files/amex.svg" alt="Amex">
+                        <img src="image1_files/discover.svg" alt="Discover">
+                    </div>
+                </div>
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="cardName">Card holder Name</label>
+                            <input type="text" id="cardName" name="cardName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <div id="card-element"></div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <div id="card-expiry-element"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>CVC</label>
+                                <div id="card-cvc-element"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Complete Purchase</button>
+                        <button type="button" class="btn btn-secondary" onclick="backToShipping()">Back to Shipping</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                
+                <div id="orderItems">
+                    <div class="product-item">
+                        <div class="product-info">
+                            <div class="product-name" id="productName">Loading...</div>
+                            <div class="product-qty"><span id="productQty">1</span> × <span id="productDosage">N/A</span></div>
+                        </div>
+                        <div class="product-price">$<span id="productPrice">0.00</span></div>
+                    </div>
+                </div>
+
+                <div class="summary-row">
+                    <span class="label">Subtotal</span>
+                    <span class="amount">$<span id="subtotal">0.00</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>$<span id="shipping">0.00</span></span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax</span>
+                    <span>$<span id="tax">0.00</span></span>
+                </div>
+                <div class="summary-total">
+                    <span>Total</span>
+                    <span class="amount">$<span id="total">0.00</span></span>
+                </div>
+
+                <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 13px; color: #6b7280;">
+                    <strong>✓ Secure Payment</strong><br>
+                    Your payment is encrypted and secure.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">◆</div>
+                <div>
+                    <div class="footer-brand-title">TIMER PEPTIDES</div>
+                    <div class="footer-brand-text">High-purity, physician-grade peptides manufactured and batch-tested in the USA.</div>
+                    <a class="footer-phone" href="tel:+18187911343">+1 (818) 791-1343</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Navigation</div>
+                <a href="index.html">Home</a>
+                <a href="shop.html">All Peptides</a>
+                <a href="coas.html">COAs</a>
+                <a href="company.html">Our Company</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Legal</div>
+                <a href="legal.html">Legal</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Timer Peptides. All rights reserved. For Research Use Only.</div>
+    </footer>
+
+    <script>
+        // Step navigation
+        function goToShipping() {
+            const form = document.getElementById('contactShippingForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('step1Label').classList.remove('step-active');
+            document.getElementById('step1Label').classList.add('step-inactive');
+            document.getElementById('step2Label').classList.remove('step-inactive');
+            document.getElementById('step2Label').classList.add('step-active');
+            window.scrollTo(0, 0);
+            // update shipping default
+            setShippingAmount();
+            // restore breadcrumb labels in case they were changed
+            const step2Label = document.getElementById('step2Label');
+            const step3Label = document.getElementById('step3Label');
+            if (step2Label) step2Label.textContent = '2. Shipping';
+            if (step3Label) { step3Label.textContent = '3. Payment'; step3Label.style.display = ''; }
+        }
+
+        function goToStep1() {
+            // if shipping active, hide it; if payment active, hide that too
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3')?.classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step1Label').classList.add('step-active');
+            document.getElementById('step1Label').classList.remove('step-inactive');
+            document.getElementById('step2Label').classList.add('step-inactive');
+            document.getElementById('step2Label').classList.remove('step-active');
+            document.getElementById('step3Label')?.classList.add('step-inactive');
+            document.getElementById('step3Label')?.classList.remove('step-active');
+            window.scrollTo(0, 0);
+            // restore breadcrumb labels
+            const step2Label = document.getElementById('step2Label');
+            const step3Label = document.getElementById('step3Label');
+            if (step2Label) step2Label.textContent = '2. Shipping';
+            if (step3Label) { step3Label.textContent = '3. Payment'; step3Label.style.display = ''; }
+        }
+
+        function goToPayment() {
+            // ensure shipping selection exists
+            const sform = document.getElementById('shippingForm');
+            // set shipping amount then show payment
+            setShippingAmount();
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+            document.getElementById('step2Label').classList.remove('step-active');
+            document.getElementById('step2Label').classList.add('step-inactive');
+            document.getElementById('step3Label').classList.remove('step-inactive');
+            document.getElementById('step3Label').classList.add('step-active');
+            window.scrollTo(0, 0);
+            // recalc totals including shipping
+            recalcTotals();
+            // Place Order label will be updated by recalcTotals()
+            // change breadcrumb to 2-step style like the screenshot
+            const step2Label = document.getElementById('step2Label');
+            const step3Label = document.getElementById('step3Label');
+            if (step2Label) step2Label.textContent = '2. Payment';
+            if (step3Label) step3Label.style.display = 'none';
+        }
+
+        function backToShipping() {
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            document.getElementById('step3Label').classList.remove('step-active');
+            document.getElementById('step3Label').classList.add('step-inactive');
+            document.getElementById('step2Label').classList.remove('step-inactive');
+            document.getElementById('step2Label').classList.add('step-active');
+            window.scrollTo(0,0);
+            // restore breadcrumb labels
+            const step2Label = document.getElementById('step2Label');
+            const step3Label = document.getElementById('step3Label');
+            if (step2Label) step2Label.textContent = '2. Shipping';
+            if (step3Label) { step3Label.textContent = '3. Payment'; step3Label.style.display = ''; }
+        }
+
+        // Get product info from URL parameters
+        const adminEmail = 'support@timerpeptides.com';
+        const params = new URLSearchParams(window.location.search);
+        const productName = params.get('product') || 'Peptide Product';
+        const productPrice = parseFloat(params.get('price')) || 0;
+        const productDosage = params.get('dosage') || 'Standard';
+        const productQuantity = parseInt(params.get('quantity')) || 1;
+        
+        let subtotal = productPrice * productQuantity;
+        let tax = subtotal * 0.08;
+        let shippingAmount = 0;
+        let total = subtotal + tax + shippingAmount;
+
+        function recalcTotals(items) {
+            // If items array provided use it, otherwise use single product vars
+            if (Array.isArray(items) && items.length) {
+                subtotal = items.reduce((s, it) => s + ((parseFloat(it.price) || 0) * (parseInt(it.quantity) || 1)), 0);
+            } else {
+                subtotal = productPrice * productQuantity;
+            }
+            tax = subtotal * 0.08;
+            total = subtotal + tax + shippingAmount;
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('tax').textContent = tax.toFixed(2);
+            document.getElementById('shipping').textContent = shippingAmount.toFixed(2);
+            document.getElementById('total').textContent = total.toFixed(2);
+            // update Place Order button to show final total when not processing
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn && !submitBtn.disabled) {
+                submitBtn.textContent = `Place Order — $${total.toFixed(2)}`;
+            }
+        }
+
+        function updateOrderSummary() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+            const orderItemsEl = document.getElementById('orderItems');
+
+            if (cartItems && cartItems.length) {
+                // render cart items
+                orderItemsEl.innerHTML = '';
+                cartItems.forEach(it => {
+                    const itemTotal = ((parseFloat(it.price) || 0) * (parseInt(it.quantity) || 1)).toFixed(2);
+                    const row = document.createElement('div');
+                    row.className = 'product-item';
+                    row.innerHTML = `
+                        <div class="product-info">
+                            <div class="product-name">${it.name}</div>
+                            <div class="product-qty">${it.quantity} × ${it.dosage || ''}</div>
+                        </div>
+                        <div class="product-price">$${itemTotal}</div>
+                    `;
+                    orderItemsEl.appendChild(row);
+                });
+                // hide single-product placeholder fields if present
+                const pNameEl = document.getElementById('productName');
+                const pPriceEl = document.getElementById('productPrice');
+                if (pNameEl) pNameEl.style.display = 'none';
+                if (pPriceEl && pPriceEl.parentElement) pPriceEl.parentElement.style.display = 'none';
+                // if no shipping selection present assume default express
+                if (!document.querySelector('input[name="shippingMethod"]')) {
+                    shippingAmount = 15.00;
+                }
+                // recalc totals from cart
+                recalcTotals(cartItems);
+            } else {
+                // single product flow (URL params)
+                orderItemsEl.innerHTML = `
+                    <div class="product-item">
+                        <div class="product-info">
+                            <div class="product-name" id="productName">${productName}</div>
+                            <div class="product-qty"><span id="productQty">${productQuantity}</span> × <span id="productDosage">${productDosage}</span></div>
+                        </div>
+                        <div class="product-price">$<span id="productPrice">${productPrice.toFixed(2)}</span></div>
+                    </div>
+                `;
+                // if no shipping selection present assume default express
+                if (!document.querySelector('input[name="shippingMethod"]')) {
+                    shippingAmount = 15.00;
+                }
+                recalcTotals();
+            }
+        }
+
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_51234567890');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        
+        try {
+            cardElement.mount('#card-element');
+            elements.create('cardExpiry').mount('#card-expiry-element');
+            elements.create('cardCvc').mount('#card-cvc-element');
+        } catch(e) {
+            console.log('Stripe not fully configured - demo mode');
+        }
+
+        function setShippingAmount() {
+            const selected = document.querySelector('input[name="shippingMethod"]:checked');
+            if (!selected) {
+                shippingAmount = 0;
+            } else if (selected.value === 'express') {
+                shippingAmount = 15.00;
+            } else {
+                shippingAmount = 0;
+            }
+            recalcTotals();
+        }
+
+        // Handle payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            // Get form data
+            const orderData = {
+                product: productName,
+                price: productPrice,
+                dosage: productDosage,
+                quantity: productQuantity,
+                shipping: shippingAmount,
+                total: total,
+                customer: {
+                    email: document.getElementById('email').value,
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    zip: document.getElementById('zip').value,
+                    country: document.getElementById('country').value
+                },
+                timestamp: new Date().toISOString()
+            };
+
+            // Send order notification via mailto
+            const adminEmailSubject = `New Order: ${productName}`;
+            const adminEmailBody = `
+New Order Received:
+Product: ${productName}
+Dosage: ${productDosage}
+Quantity: ${productQuantity}
+Total: $${total.toFixed(2)}
+
+Customer:
+Name: ${orderData.customer.firstName} ${orderData.customer.lastName}
+Email: ${orderData.customer.email}
+Phone: ${orderData.customer.phone}
+Address: ${orderData.customer.address}
+City: ${orderData.customer.city}, ${orderData.customer.state} ${orderData.customer.zip}
+Country: ${orderData.customer.country}
+
+Timestamp: ${orderData.timestamp}
+            `.trim();
+
+            window.location.href = `mailto:${adminEmail}?subject=${encodeURIComponent(adminEmailSubject)}&body=${encodeURIComponent(adminEmailBody)}`;
+            
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                // restore label to Place Order with final total
+                submitBtn.textContent = `Place Order — $${total.toFixed(2)}`;
+            }, 2000);
+        });
+
+        // Update cart badge
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem('cartItems') || '[]');
+        }
+
+        function updateCartBadge() {
+            const count = getCartItems().reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                badge.textContent = count;
+                badge.style.display = count ? 'inline-flex' : 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Display product price and order summary
+            updateOrderSummary();
+            updateCartBadge();
+            // wire shipping radio change to update totals
+            const shippingForm = document.getElementById('shippingForm');
+            if (shippingForm) {
+                shippingForm.addEventListener('change', () => {
+                    setShippingAmount();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+*** End Patch

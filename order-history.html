@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; color: #111827; }
+        .topbar { background: #e5f3ff; color: #1d4ed8; padding: 10px 24px; text-align: center; font-size: 13px; font-weight: 600; }
+        .header { background: white; border-bottom: 1px solid #e5e7eb; }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .logo { font-weight: 700; color: #111827; text-decoration: none; font-size: 18px; }
+        .nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; color: #475569; font-weight: 600; }
+        .nav-links a:hover { color: #004aad; }
+        .page-title { max-width: 1200px; margin: 24px auto; padding: 0 24px; }
+        .page-title h1 { font-size: 32px; margin-bottom: 8px; }
+        .page-title a { color: #004aad; text-decoration: none; font-weight: 600; }
+        .history-card { max-width: 1200px; margin: 24px auto; padding: 24px; background: white; border: 1px solid #e5e7eb; border-radius: 20px; }
+        .history-empty { padding: 40px; text-align: center; color: #475569; }
+        .history-empty p { margin-bottom: 20px; }
+        .history-empty a { display: inline-block; padding: 12px 22px; background: #004aad; color: white; border-radius: 10px; text-decoration: none; font-weight: 700; }
+        .order-list { display: grid; gap: 18px; }
+        .order-item { border: 1px solid #e5e7eb; border-radius: 18px; padding: 22px; background: #ffffff; }
+        .order-item h2 { font-size: 18px; margin-bottom: 12px; }
+        .order-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 10px; }
+        .order-row span { color: #475569; font-size: 14px; }
+        .order-status { margin-top: 16px; display: inline-flex; padding: 10px 14px; border-radius: 999px; background: #eff6ff; color: #1d4ed8; font-weight: 700; font-size: 13px; }
+        @media (max-width: 780px) { .order-row { grid-template-columns: 1fr; } }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 780px) { .footer-grid { flex-direction: column; gap: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="topbar">Need help? Text us, and a team member will reply in minutes +1 (818) 791-1343</div>
+    <header class="header">
+        <div class="header-content">
+            <a href="shop.html" class="logo">TIMER PEPTIDES</a>
+            <div class="nav-links">
+                <a href="profile.html">My Account</a>
+                <a href="shop.html">Shop</a>
+                <a href="login.html">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-title">
+        <a href="profile.html">← My Account</a>
+        <h1>Order History</h1>
+    </div>
+
+    <div class="history-card" id="historyCard">
+        <div class="history-empty" id="historyEmpty">
+            <p>You haven't placed any orders yet.</p>
+            <a href="shop.html">Browse peptides</a>
+        </div>
+        <div class="order-list" id="orderList" style="display: none;"></div>
+    </div>
+
+    <script>
+        function loadOrderHistory() {
+            const orders = JSON.parse(localStorage.getItem('peptideOrders') || '[]');
+            const historyEmpty = document.getElementById('historyEmpty');
+            const orderList = document.getElementById('orderList');
+
+            if (!orders.length) {
+                orderList.style.display = 'none';
+                historyEmpty.style.display = 'block';
+                return;
+            }
+
+            historyEmpty.style.display = 'none';
+            orderList.style.display = 'grid';
+            orderList.innerHTML = '';
+
+            orders.reverse().forEach((order, index) => {
+                const orderNode = document.createElement('div');
+                orderNode.className = 'order-item';
+                orderNode.innerHTML = `
+                    <h2>Order #${orders.length - index} — ${new Date(order.timestamp).toLocaleDateString()}</h2>
+                    <div class="order-row"><span>Product</span><span>${order.product}</span></div>
+                    <div class="order-row"><span>Dosage</span><span>${order.dosage}</span></div>
+                    <div class="order-row"><span>Quantity</span><span>${order.quantity}</span></div>
+                    <div class="order-row"><span>Total</span><span>$${order.total.toFixed(2)}</span></div>
+                    <div class="order-row"><span>Email</span><span>${order.customer.email}</span></div>
+                    <div class="order-status">Placed</div>
+                `;
+                orderList.appendChild(orderNode);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadOrderHistory);
+    </script>
+</body>
+</html>

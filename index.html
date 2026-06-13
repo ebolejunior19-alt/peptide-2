@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Peptides - Physician-Grade Peptides</title>
+    <link rel="stylesheet" href="./image1_files/08jx~k69kja0y.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f9f9f9; color: #111827; }
+        .topbar { background: #f3f4f6; text-align: center; padding: 12px 20px; font-size: 13px; color: #374151; border-bottom: 1px solid #e5e7eb; }
+        .topbar a { color: #111827; font-weight: 700; text-decoration: none; }
+        .header { background: white; border-bottom: 1px solid #e5e7eb; padding: 12px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .header-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+        .logo-section { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #111827; }
+        .logo-box { background: linear-gradient(135deg, #004AAD, #0066ff); width: 36px; height: 36px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; }
+        .logo { font-size: 16px; font-weight: 700; letter-spacing: 1px; color: #111827; white-space: nowrap; }
+        .nav-search-container { display: flex; align-items: center; gap: 30px; flex: 1; position: relative; }
+        .nav { display: flex; gap: 30px; align-items: center; }
+        .nav a, .nav button { text-decoration: none; color: #374151; font-size: 13px; font-weight: 500; transition: color 0.2s; background: none; border: none; cursor: pointer; }
+        .nav a:hover, .nav button:hover { color: #004AAD; }
+        .nav-item { position: relative; }
+        .dropdown-menu { position: absolute; top: calc(100% + 10px); left: 0; background: white; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 18px 40px rgba(15,23,42,0.08); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+            z-index: 10; }
+        .dropdown-menu a { display: block; padding: 12px 16px; color: #111827; font-weight: 500; }
+        .dropdown-menu a:hover { background: #f3f4f6; color: #004aad; }
+        .nav-item:hover .dropdown-menu, .nav-item:focus-within .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .search-container { position: relative; width: 280px; }
+        .search-box { background: #f3f4f6; border: 1px solid #e5e7eb; border-radius: 999px; padding: 10px 80px 10px 16px; font-size: 13px; width: 100%; transition: border-color 0.2s; }
+        .search-box:focus { outline: none; border-color: #004AAD; }
+        .search-button, .search-clear { position: absolute; top: 50%; transform: translateY(-50%); border: none; background: transparent; cursor: pointer; font-size: 16px; color: #374151; padding: 6px; display: inline-flex; align-items: center; justify-content: center; }
+        .search-button:hover, .search-clear:hover { color: #004AAD; }
+        .search-clear { right: 42px; display: none; }
+        .search-button { right: 12px; }
+        .search-results-dropdown { position: absolute; top: calc(100% + 8px); left: 0; background: white; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 18px 40px rgba(15,23,42,0.08); width: 100%; max-height: 360px; overflow-y: auto; z-index: 100; }
+        .search-result-item { padding: 12px 14px; border-bottom: 1px solid #f3f4f6; cursor: pointer; display: flex; gap: 12px; align-items: center; transition: background 0.2s; }
+        .search-result-item:hover { background: #f9fafb; }
+        .search-result-item:last-child { border-bottom: none; }
+        .search-result-item img { width: 52px; height: 52px; object-fit: cover; border-radius: 12px; flex-shrink: 0; }
+        .search-result-meta { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+        .search-result-name { font-size: 14px; font-weight: 700; color: #111827; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .search-result-price { font-size: 13px; font-weight: 700; color: #004AAD; }
+        .search-result-dosage { font-size: 12px; color: #6b7280; }
+        .search-preview { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: white; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: 0 18px 40px rgba(15,23,42,0.08); padding: 16px; display: flex; align-items: center; gap: 16px; z-index: 100; }
+        .search-preview img { width: 70px; height: 70px; object-fit: contain; border-radius: 16px; }
+        .search-preview-info { display: flex; flex-direction: column; gap: 4px; }
+        .search-preview-name { font-size: 15px; font-weight: 700; color: #111827; }
+        .search-preview-price { font-size: 14px; font-weight: 800; color: #004AAD; }
+        .search-preview-text { font-size: 12px; color: #6b7280; }
+        .header-icons { display: flex; gap: 16px; align-items: center; font-size: 18px; cursor: pointer; }
+        .header-icons span { color: #374151; transition: color 0.2s; }
+        .header-icons span:hover { color: #004AAD; }
+        .promo-bar { background: #004AAD; color: white; text-align: center; padding: 14px 40px; font-size: 13px; font-weight: 600; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        main { max-width: 100%; margin: 0 auto; padding: 50px 40px; }
+        .hero {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 0;
+            padding: 60px 56px 64px;
+            min-height: 76vh;
+            position: relative;
+            overflow: hidden;
+            background-image: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,250,0.98)), url('./image1_files/hero-slide-1.jpeg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at left 20% top 20%, rgba(255,255,255,0.74), transparent 32%),
+                        radial-gradient(circle at right 25% bottom 20%, rgba(0,74,173,0.12), transparent 28%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .hero-copy,
+        .hero-media,
+        .hero-controls {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-controls, .hero-dots { display: flex; pointer-events: none; }
+        .hero-prev, .hero-next { pointer-events: auto; width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,0.98); border: 1px solid rgba(0,0,0,0.06); display: grid; place-items: center; box-shadow: 0 8px 20px rgba(2,6,23,0.12); z-index: 20; transition: transform 0.14s ease, box-shadow 0.14s ease; }
+        .hero-prev { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); }
+        .hero-next { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); }
+        .hero-prev, .hero-next { font-size: 1.15rem; color: #0f4cba; }
+        .hero-prev:hover, .hero-next:hover { transform: translateY(-50%) scale(1.06); box-shadow: 0 12px 28px rgba(2,6,23,0.14); }
+        .hero-dots { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); gap: 0.6rem; pointer-events: auto; z-index: 18; display:flex; align-items:center; }
+        .hero-dots .dot { width: 10px; height: 10px; border-radius: 999px; background: #d1d5db; transition: all 0.22s ease; box-shadow: none; border: none; }
+        .hero-dots .dot.active { width: 30px; height: 10px; border-radius: 999px; background: #0f4cba; box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+        .hero h1 {
+            font-size: clamp(2.4rem, 4.7vw, 3.5rem);
+            color: #004aad;
+            font-weight: 900;
+            margin: 0 0 14px 0;
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-text {
+            color: #1f2937;
+            line-height: 1.65;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+            max-width: 26rem;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 16px;
+        }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            border-radius: 999px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #ffffff;
+            background: #004aad;
+            font-size: 0.82rem;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+        .button:hover {
+            transform: translateY(-2px);
+            background: #00347f;
+            box-shadow: 0 20px 40px rgba(0, 74, 173, 0.2);
+        }
+        .button-secondary {
+            background: rgba(255,255,255,0.95);
+            color: #111827;
+            border: 1px solid #d1d5db;
+        }
+        .button-secondary:hover {
+            background: #f8fafc;
+        }
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            color: #1f2937;
+            font-weight: 600;
+        }
+        .hero-stats strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #004aad;
+        }
+        .hero-media {
+            display: flex;
+            justify-content: flex-end;
+            max-width: 620px;
+        }
+        .hero-card {
+            width: 100%;
+            max-width: 620px;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(15,23,42,0.08);
+            border-radius: 32px;
+            padding: 3rem 3rem 3.5rem;
+            box-shadow: 0 32px 90px rgba(2,6,23,0.14);
+            backdrop-filter: blur(10px);
+        }
+        .hero-card .eyebrow {
+            display: inline-flex;
+            margin-bottom: 1rem;
+            color: #004aad;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+        .hero-card h1 {
+            margin: 0 0 1rem 0;
+            font-size: clamp(2.8rem, 5vw, 4.8rem);
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+            color: #00347f;
+            font-weight: 900;
+        }
+        .hero-card .hero-text {
+            color: #1f2937;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.6rem;
+            max-width: 34rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.75;
+            margin-bottom: 1.9rem;
+            max-width: 30rem;
+        }
+        .hero-buttons { margin-bottom: 0; }
+        .button { padding: 0.95rem 2rem; font-size: 0.95rem; }
+        .hero-carousel-wrapper { position: relative; z-index: 3; width: 100%; }
+        .btn { padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; font-size: 14px; transition: all 0.2s; }
+        .btn-primary { background: #004AAD; color: white; }
+        .btn-primary:hover { background: #003A87; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,74,173,0.3); }
+        .btn-secondary { background: white; color: #111827; border: 2px solid #e5e7eb; }
+        .btn-secondary:hover { background: #f3f4f6; border-color: #004AAD; }
+        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; max-width: 520px; min-height: 320px; }
+        .carousel-container { position: relative; width: 100%; }
+        .carousel-container.full-width { background: rgba(255,255,255,0.9); border-radius: 32px; padding: 60px 50px 60px 80px; min-height: 100vh; position: relative; max-width: 1500px; margin: 0 auto 0 0; display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 60px; box-shadow: 0 40px 90px rgba(14,35,90,0.12); }
+        .carousel-slide { display: none; animation: fadeIn 0.5s; }
+        .carousel-slide.active { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center; width: 100%; }
+        .slide-content-left { text-align: left; padding: 60px 40px 60px 40px; background: white; border-radius: 28px; box-shadow: 0 28px 70px rgba(0,0,0,0.12); max-width: 520px; }
+        .slide-title { font-size: 56px; color: #004AAD; font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
+        .slide-subtitle { font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 20px; }
+        .slide-text { font-size: 17px; color: #6b7280; line-height: 1.8; margin-bottom: 36px; }
+        .slide-content-right { display: flex; align-items: center; justify-content: center; position: relative; filter: drop-shadow(0 5px 20px rgba(0,0,0,0.1)); }
+        .bottle-display { position: relative; width: 100%; height: 320px; display: flex; align-items: center; justify-content: flex-end; }
+        /* hide decorative blurred background so bottles read as foreground elements */
+        .bottle-background { display: none; }
+        .bottle-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: flex-end; z-index: 2; }
+        .bottle { position: absolute; display: flex; align-items: center; justify-content: center; }
+        .bottle img { max-height: 260px; width: auto; object-fit: contain; background: transparent; display: block; border-radius: 6px; box-shadow: 0 28px 60px rgba(2,6,23,0.28); }
+        /* White rim to visually separate the bottle from the background */
+        .bottle::before { content: ''; position: absolute; inset: -8px; border-radius: 10px; background: rgba(255,255,255,0.9); z-index: -1; }
+        .bottle-left { right: 56%; transform: translateX(-30px) rotateZ(-8deg) scale(0.86); z-index: 3; }
+        .bottle-center { right: 30%; transform: translateX(-6px) translateY(-6px) scale(1.08); z-index: 9; }
+        .bottle-right { right: 6%; transform: translateX(20px) rotateZ(6deg) scale(0.9); z-index: 4; }
+        .slide-content-right img { max-width: 100%; max-height: 380px; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .carousel-slide img { display: block; margin: 0 auto; max-width: 100%; height: 340px; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .who-we-are { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin: 80px auto 60px; max-width: 1400px; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
+        .who-we-are-image { width: 100%; max-width: 520px; max-height: 420px; object-fit: cover; border-radius: 16px; }
+        .who-we-are-content h2 { font-size: 42px; font-weight: 800; color: #111827; margin-bottom: 28px; }
+        .who-we-are-content p { font-size: 15px; line-height: 1.8; color: #4b5563; margin-bottom: 20px; }
+        .who-we-are-content p:last-child { margin-bottom: 0; }
+        .carousel-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,74,173,0.9); color: white; border: none; padding: 12px 16px; font-size: 24px; cursor: pointer; border-radius: 6px; transition: all 0.2s; z-index: 10; font-weight: bold; }
+        .carousel-nav:hover { background: rgba(0,74,173,1); transform: translateY(-50%) scale(1.15); box-shadow: 0 8px 20px rgba(0,74,173,0.4); }
+        .carousel-prev { left: 20px; }
+        .carousel-next { right: 20px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 10px; margin-top: 24px; position: relative; z-index: 5; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #d1d5db; cursor: pointer; transition: all 0.2s; }
+        .dot.active { background: #004AAD; transform: scale(1.3); }
+        .carousel-slide-info { margin-top: 12px; font-size: 14px; color: #6b7280; font-weight: 500; }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 60px auto; max-width: 1400px; padding: 0 40px; }
+        .feature-card { background: white; border-radius: 8px; padding: 32px; border: 1px solid #e5e7eb; transition: box-shadow 0.2s; }
+        .feature-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+        .feature-card h3 { font-size: 22px; font-weight: 600; color: #111827; margin-bottom: 12px; }
+        .feature-card .subtitle { font-size: 15px; font-weight: 600; color: #004AAD; margin-bottom: 16px; }
+        .feature-card p { color: #6b7280; line-height: 1.7; font-size: 14px; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 24px; }
+        .testimonial-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #e5e7eb; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
+        .testimonial-card p { color: #475569; line-height: 1.8; margin-bottom: 18px; }
+        .testimonial-meta { display: flex; align-items: center; gap: 12px; }
+        .testimonial-author { font-weight: 700; color: #111827; }
+        .testimonial-role { color: #6b7280; font-size: 13px; }
+        .rating { font-size: 14px; color: #f59e0b; letter-spacing: 0.05em; margin-bottom: 10px; }
+        .section { margin: 80px auto; max-width: 1400px; padding: 0 40px; }
+        .section h2 { font-size: 36px; font-weight: 700; color: #111827; margin-bottom: 32px; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; }
+        .section h3 { font-size: 26px; font-weight: 600; color: #111827; margin-bottom: 20px; margin-top: 40px; }
+        .section p { color: #6b7280; line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 34px 0; }
+        .product-card { background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px; transition: all 0.2s; text-align: center; }
+        .product-card:hover { box-shadow: 0 6px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+        .product-card a { position: relative; display: block; }
+        .product-card img { width: 70% !important; max-width: 130px; height: auto !important; object-fit: contain; border-radius: 8px; margin: 0 auto 10px; display: block; }
+        .product-card h4 { font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 8px; }
+        .product-card .price { font-size: 15px; font-weight: 900; color: #111827; margin-bottom: 6px; letter-spacing: 0.02em; }
+        .product-card .dosages { font-size: 12px; color: #4b5563; line-height: 1.4; margin-bottom: 10px; }
+        .product-card .amount-select { width: 100%; border: 1px solid #d1d5db; border-radius: 10px; padding: 9px 10px; font-size: 13px; color: #111827; background: white; appearance: none; cursor: pointer; }
+        .product-card .amount-select:focus { outline: none; border-color: #004aad; box-shadow: 0 0 0 3px rgba(0,74,173,0.12); }
+        .product-card .btn { width: 100%; text-align: center; padding: 9px 0; font-size: 13px; }
+        .btn-added { background: #10b981 !important; color: white !important; border-color: transparent !important; }
+        .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 14px 24px; border-radius: 999px; font-size: 14px; font-weight: 700; z-index: 9999; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24); opacity: 0; animation: toastFade 0.24s ease forwards; }
+        @keyframes toastFade { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .cart-badge { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 6px; font-size: 11px; font-weight: 700; color: white; background: #dc2626; border-radius: 999px; position: absolute; top: -6px; right: -6px; border: 2px solid white; }
+        .about { background: #f3f4f6; padding: 40px; border-radius: 8px; }
+        /* Cart overlay removed: navigation opens dedicated cart page */
+        .about h2 { color: #111827; margin-bottom: 20px; border: none; padding: 0; font-size: 28px; }
+        .about p { color: #6b7280; line-height: 1.8; margin-bottom: 16px; }
+        footer.site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        footer.site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        footer.site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 768px) {
+            .header-content { padding: 0 20px; flex-direction: column; gap: 16px; }
+            .nav-search-container { flex-direction: column; gap: 16px; width: 100%; }
+            .nav { flex-wrap: wrap; justify-content: center; }
+            .search-box { width: 100%; }
+        }
+        @media (max-width: 900px) {
+            .footer-grid { flex-direction: column; gap: 24px; }
+            .hero { grid-template-columns: 1fr; gap: 0; min-height: 80vh; }
+            .hero::before { filter: blur(1px); }
+            .carousel-container.full-width { grid-template-columns: 1fr; gap: 30px; padding: 40px 20px; min-height: auto; background: rgba(0,0,0,0.2); }
+            .carousel-slide.active { grid-template-columns: 1fr; }
+            .slide-content-left { text-align: center; padding: 30px 20px; max-width: 100%; }
+            .slide-title { font-size: 40px; }
+            .slide-subtitle { font-size: 18px; }
+            .slide-text { font-size: 15px; }
+            .bottle-display { height: 380px; }
+            .bottle img { max-height: 320px; }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+            .features { grid-template-columns: 1fr; }
+            .promo-bar { padding: 12px 20px; gap: 16px; font-size: 11px; }
+            main { padding: 30px 20px; max-width: 100%; }
+            .section { margin: 60px 0; padding: 0 20px; }
+            .section h2 { font-size: 28px; }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+            .carousel-nav { padding: 6px 10px; font-size: 16px; }
+            .who-we-are { grid-template-columns: 1fr; padding: 30px 20px; margin: 50px 0 40px; }
+            .who-we-are-content h2 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        Need help? Text us, and a team member will reply in minutes <a href="tel:+18187911343">+1 (818) 791-1343</a>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <a href="cart.html" class="logo-section">
+                <div class="logo-box">◆</div>
+                <div class="logo">TIMER PEPTIDES</div>
+            </a>
+            <div class="nav-search-container">
+                <nav class="nav">
+                    <a href="#home">Home</a>
+                    <a href="shop.html">All Peptides</a>
+                    <a href="coas.html">COAs</a>
+                    <div class="nav-item">
+                        <button type="button">Affiliates ▾</button>
+                        <div class="dropdown-menu">
+                            <a href="affiliate-dashboard.html">Affiliate Dashboard</a>
+                            <a href="affiliate-registration.html">Affiliate Registration</a>
+                        </div>
+                    </div>
+                    <a href="company.html">Our Company</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+                <div class="search-container">
+                    <input type="text" id="homeSearchBox" class="search-box" placeholder="Search peptides...">
+                    <button id="clearSearch" type="button" class="search-clear" aria-label="Clear search" title="Clear search">✕</button>
+                    <button id="searchButton" type="button" class="search-button" aria-label="Search">🔍</button>
+                    <div id="searchResults" class="search-results-dropdown" style="display:none;"></div>
+                    <div id="searchPreview" class="search-preview" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="header-icons">
+                <a href="login.html" style="color: inherit; text-decoration: none;"><span>👤</span></a>
+                <a href="cart.html" class="cart-link" style="color: inherit; text-decoration: none; position: relative;">
+                    <span>🛒</span>
+                    <span id="cartBadge" class="cart-badge">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="promo-bar">
+        <span>Manufactured in the USA</span>
+        <span>Batch Produced, Batch Tested</span>
+        <span>2 Day Shipping — Fast &amp; Discreet</span>
+        <span>Free Shipping Over $200</span>
+    </div>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-copy">
+                <div class="hero-card">
+                    <span class="eyebrow" id="heroEyebrow">Manufactured in the USA • Batch Produced, Batch Tested</span>
+                    <h1 id="heroTitle">Peptide Blends</h1>
+                    <p class="hero-text" id="heroText">Pre-Formulated, Physician-Grade Blends</p>
+                    <p class="hero-description">Convenient multi-peptide blends for streamlined protocols — the same USA manufacturing and batch testing.</p>
+                    <div class="hero-buttons">
+                        <a href="#blends" class="button">Shop Blends</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-media">
+                <div class="hero-image">
+                    <div class="bottle-display" aria-hidden="true">
+                        <div class="bottle-background"></div>
+                        <div class="bottle-container">
+                            <div class="bottle bottle-left">
+                                <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin">
+                            </div>
+                            <div class="bottle bottle-center">
+                                <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Blend">
+                            </div>
+                            <div class="bottle bottle-right">
+                                <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Ipamorelin">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="heroPrev" class="hero-nav-button hero-prev" type="button" aria-label="Previous slide">◀</button>
+                    <button id="heroNext" class="hero-nav-button hero-next" type="button" aria-label="Next slide">▶</button>
+                    <div class="hero-dots" id="heroDots"></div>
+                </div>
+            </div>
+        </section>
+        <section class="features">
+            <div class="feature-card">
+                <h3>🧬 Single Peptides</h3>
+                <p class="subtitle">Pure, Targeted Solutions</p>
+                <p>Ultra-pure single-peptide formulations with 99%+ purity. Each vial is independently batch-tested and verified for quality and consistency.</p>
+                <a href="shop.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Explore Peptides</a>
+            </div>
+            <div class="feature-card">
+                <h3>⚗️ Peptide Blends</h3>
+                <p class="subtitle">Pre-Formulated Convenience</p>
+                <p>Multi-peptide blends engineered for specific wellness protocols. Manufactured with the same rigorous standards as our single peptides.</p>
+                <a href="#blends" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Shop Blends</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Customer Success Stories</h2>
+            <p>Trusted by practitioners, athletes, and health-focused customers. See what people say after purchasing our premium peptides.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p> Amazing results in just a few weeks. The quality is exceptional and the experience was seamless from order to delivery.</p>
+                    <div class="testimonial-meta">
+                        <div>
+                            <div class="testimonial-author">Lena M.</div>
+                            <div class="testimonial-role">Wellness Coach</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p> I’ve tried several peptide suppliers, and this one is by far the most reliable. Fast shipping and very clean products.</p>
+                    <div class="testimonial-meta">
+                        <div>
+                            <div class="testimonial-author">Dr. Ahmed S.</div>
+                            <div class="testimonial-role">Functional Medicine</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="rating">★★★★★</div>
+                    <p> Stable packaging, great customer support, and excellent purity. These peptides helped our clients see better recovery and energy.</p>
+                    <div class="testimonial-meta">
+                        <div>
+                            <div class="testimonial-author">Nate R.</div>
+                            <div class="testimonial-role">Performance Trainer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Why Timer Peptides?</h2>
+            <p>Timer Peptides stands at the forefront of peptide research and manufacturing. We specialize in producing ultra-pure, physician-grade peptides using cutting-edge synthesis methods and rigorous quality-assurance protocols. Every peptide exceeds 99% purity and is independently verified through advanced analytical testing.</p>
+            <p style="margin-top: 20px;">From synthesis to packaging, our dedicated team ensures that every product meets the highest standards of quality, safety, and efficacy. When you choose Timer Peptides, you're choosing compounds trusted by physicians and researchers worldwide.</p>
+        </section>
+
+        <section class="section" id="peptides">
+            <h2>Our Top Picks</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=GHK-Cu&price=80.00&dosage=50mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/GHK-Cu-50-mg-2-v2.jpeg" alt="GHK-Cu" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>GHK-Cu</h4>
+                    <div class="price">$80.00</div>
+                    <div class="dosages">50 mg</div>
+                    <a href="payment.html?product=GHK-Cu&price=80.00&dosage=50mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Retatrutide&price=125.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Retatrutide-5-mg-2-v2.jpeg" alt="Retatrutide" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Retatrutide</h4>
+                    <div class="price">$125.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=Retatrutide&price=125.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Cagrilintide&price=125.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Cagrilintide-5-mg-2-v2.jpeg" alt="Cagrilintide" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Cagrilintide</h4>
+                    <div class="price">$125.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=Cagrilintide&price=125.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Cagrilintide%20%2B%20Semaglutide&price=155.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Cagrilintide-Semaglutide-5-mg-2-v2.jpeg" alt="Cagrilintide + Semaglutide" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Cagrilintide + Semaglutide</h4>
+                    <div class="price">$155.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=Cagrilintide%20%2B%20Semaglutide&price=155.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Tirzepatide%2010%20mg&price=145.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Tirzepatide-10-mg-2-v2.jpeg" alt="Tirzepatide" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Tirzepatide</h4>
+                    <div class="price">$145.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=Tirzepatide%2010%20mg&price=145.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Metabolic</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=MOTS-C&price=155.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/MOTS-C-10-mg-2-v2.jpeg" alt="MOTS-C" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>MOTS-C</h4>
+                    <div class="price">$155.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=MOTS-C&price=155.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Tesamorelin&price=145.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Tesamorelin-5-mg-2-v2.jpeg" alt="Tesamorelin" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Tesamorelin</h4>
+                    <div class="price">$145.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=Tesamorelin&price=145.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=AOD9604%205mg&price=95.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/AOD9604-5MG-v2.jpeg" alt="AOD9604" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>AOD9604</h4>
+                    <div class="price">$95.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=AOD9604%205mg&price=95.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Tesamorelin%20%2B%20CJC1295%20%2B%20Ipamorelin%20Blend&price=195.00&dosage=Blend" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin + CJC1295 + Ipamorelin Blend" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Blend: Tesamorelin + CJC1295 + Ipamorelin</h4>
+                    <div class="price">$195.00</div>
+                    <a href="payment.html?product=Tesamorelin%20%2B%20CJC1295%20%2B%20Ipamorelin%20Blend&price=195.00&dosage=Blend" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Tesamorelin%20%2B%20Ipamorelin%20Blend&price=150.00&dosage=Blend" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin + Ipamorelin Blend" style="width: 100%; height: 100px; object-fit: cover; border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
+                    </a>
+                    <h4>Blend: Tesamorelin + Ipamorelin</h4>
+                    <div class="price">$150.00</div>
+                    <a href="payment.html?product=Tesamorelin%20%2B%20Ipamorelin%20Blend&price=150.00&dosage=Blend" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Performance</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=Ipamorelin&price=65.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Ipamorelin-5-mg-2-v2.jpeg" alt="Ipamorelin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Ipamorelin</h4>
+                    <div class="price">$65.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=Ipamorelin&price=65.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=GHRP6&price=70.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/GHRP6-5-mg-2-v2.jpeg" alt="GHRP6" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>GHRP6</h4>
+                    <div class="price">$70.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=GHRP6&price=70.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=CJC1295%20Without%20DAC&price=80.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/CJC1295-Without-DAC-5-mg-2-v2.jpeg" alt="CJC1295 Without DAC" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>CJC1295 Without DAC</h4>
+                    <div class="price">$80.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=CJC1295%20Without%20DAC&price=80.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Hexarelin&price=55.00&dosage=2mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Hexarelin-2-mg-2-v2.jpeg" alt="Hexarelin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Hexarelin</h4>
+                    <div class="price">$55.00</div>
+                    <div class="dosages">2 mg</div>
+                    <a href="payment.html?product=Hexarelin&price=55.00&dosage=2mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=IGF-1%20LR3%201%20mg&price=100.00&dosage=1mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/IGF-1-LR3-1-mg-2-v2.jpeg" alt="IGF-1 LR3" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>IGF-1 LR3</h4>
+                    <div class="price">$100.00</div>
+                    <div class="dosages">1 mg</div>
+                    <a href="payment.html?product=IGF-1%20LR3%201%20mg&price=100.00&dosage=1mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=GHRP2%205%20mg&price=75.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/GHRP2-5-mg-2-v2.jpeg" alt="GHRP2" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>GHRP2</h4>
+                    <div class="price">$75.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=GHRP2%205%20mg&price=75.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Follistatin%20315%201%20mg&price=320.00&dosage=1mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Follistatin-315-1-mg-2-v2.jpeg" alt="Follistatin 315" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Follistatin 315</h4>
+                    <div class="price">$320.00</div>
+                    <div class="dosages">1 mg</div>
+                    <a href="payment.html?product=Follistatin%20315%201%20mg&price=320.00&dosage=1mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Follistatin%20344%201%20mg&price=340.00&dosage=1mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Follistatin-344-1-mg-2-v2.jpeg" alt="Follistatin 344" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Follistatin 344</h4>
+                    <div class="price">$340.00</div>
+                    <div class="dosages">1 mg</div>
+                    <a href="payment.html?product=Follistatin%20344%201%20mg&price=340.00&dosage=1mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=CJC1295%20%2B%20Ipamorelin%2010%20mg&price=120.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>CJC1295 + Ipamorelin</h4>
+                    <div class="price">$120.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=CJC1295%20%2B%20Ipamorelin%2010%20mg&price=120.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=MGF%202%20mg&price=165.00&dosage=2mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Oxytocin-2-mg-2-v2.jpeg" alt="Oxytocin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>MGF</h4>
+                    <div class="price">$165.00</div>
+                    <div class="dosages">2 mg</div>
+                    <a href="payment.html?product=MGF%202%20mg&price=165.00&dosage=2mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Regenerative</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=BPC157&price=75.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/BPC-5-v2.jpeg" alt="BPC157" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>BPC157</h4>
+                    <div class="price">$75.00</div>
+                    <div class="dosages">5 mg — $75.00<br>10 mg — $110.00</div>
+                    <a href="payment.html?product=BPC157&price=75.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=BPC157%20%2B%20TB500&price=110.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/BPCTB-10-v2.jpeg" alt="BPC157 + TB500" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>BPC157 + TB500</h4>
+                    <div class="price">$110.00</div>
+                    <div class="dosages">10 mg — $110.00<br>20 mg — $150.00</div>
+                    <a href="payment.html?product=BPC157%20%2B%20TB500&price=110.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=TB-500%20(Thymosin%20Beta-4)&price=55.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg" alt="TB-500" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>TB-500 (Thymosin Beta-4)</h4>
+                    <div class="price">$55.00</div>
+                    <div class="dosages">5mg — $55.00<br>10mg — $85.00</div>
+                    <a href="payment.html?product=TB-500%20(Thymosin%20Beta-4)&price=55.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Glow%20Blend%2070%20mg&price=160.00&dosage=70mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Glow-Blend-v2.jpeg" alt="Glow Blend" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Glow Blend 70 mg</h4>
+                    <div class="price">$160.00</div>
+                    <a href="payment.html?product=Glow%20Blend%2070%20mg&price=160.00&dosage=70mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=LL37%205%20mg&price=165.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/LL37-5-mg-2-v2.jpeg" alt="LL37" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>LL37</h4>
+                    <div class="price">$165.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=LL37%205%20mg&price=165.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=ARA-290%2010%20mg&price=85.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Ara-290-v2.jpeg" alt="ARA-290" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>ARA-290</h4>
+                    <div class="price">$85.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=ARA-290%2010%20mg&price=85.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Melanotan%202%2010%20mg&price=75.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Melanotan-2-10-mg-2-v2.jpeg" alt="Melanotan 2" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Melanotan 2</h4>
+                    <div class="price">$75.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=Melanotan%202%2010%20mg&price=75.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Longevity</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=KPV&price=95.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/KPV-5-mg-2-v2.jpeg" alt="KPV" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>KPV</h4>
+                    <div class="price">$95.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=KPV&price=95.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=GHK-Cu&price=80.00&dosage=50mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/GHK-Cu-50-mg-2-v2.jpeg" alt="GHK-Cu" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>GHK-Cu</h4>
+                    <div class="price">$80.00</div>
+                    <div class="dosages">50 mg</div>
+                    <a href="payment.html?product=GHK-Cu&price=80.00&dosage=50mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=NAD%2B&price=65.00&dosage=500mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/NAD-500-mg-2-v2.jpeg" alt="NAD+" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>NAD+</h4>
+                    <div class="price">$65.00</div>
+                    <div class="dosages">500 mg</div>
+                    <a href="payment.html?product=NAD%2B&price=65.00&dosage=500mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=SS-31&price=95.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/SS-31-10-mg-v2.jpeg" alt="SS-31" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>SS-31</h4>
+                    <div class="price">$95.00</div>
+                    <div class="dosages">10mg — $95.00<br>50mg — $265.00</div>
+                    <a href="payment.html?product=SS-31&price=95.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Thymosin%20Alpha-1&price=85.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Thymosin-Alpha-1-5-mg-2-v2.jpeg" alt="Thymosin Alpha-1" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Thymosin Alpha-1</h4>
+                    <div class="price">$85.00</div>
+                    <div class="dosages">5mg — $85.00<br>10mg — $125.00</div>
+                    <a href="payment.html?product=Thymosin%20Alpha-1&price=85.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Epithalon%2010%20mg&price=90.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Epithalon-10-mg-2-v2.jpeg" alt="Epithalon" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Epithalon 10 mg</h4>
+                    <div class="price">$90.00</div>
+                    <a href="payment.html?product=Epithalon%2010%20mg&price=90.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Glow%20Blend%2070%20mg&price=160.00&dosage=70mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Glow-Blend-v2.jpeg" alt="Glow Blend" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Glow Blend 70 mg</h4>
+                    <div class="price">$160.00</div>
+                    <a href="payment.html?product=Glow%20Blend%2070%20mg&price=160.00&dosage=70mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Glutathione%201500%20mg&price=95.00&dosage=1500mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Glutathione-1500-mg-2-v2.jpeg" alt="Glutathione" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Glutathione 1500 mg</h4>
+                    <div class="price">$95.00</div>
+                    <a href="payment.html?product=Glutathione%201500%20mg&price=95.00&dosage=1500mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=FOXO4-DRI%2010%20mg&price=385.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/FOXO4-DRI-10-mg-2-v2.jpeg" alt="FOXO4-DRI" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>FOXO4-DRI 10 mg</h4>
+                    <div class="price">$385.00</div>
+                    <a href="payment.html?product=FOXO4-DRI%2010%20mg&price=385.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=N-Acetyl%20Epitalon%205%20mg&price=85.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/N-Acetyl-Epithalon-5-mg-v2.jpeg" alt="N-Acetyl Epitalon" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>N-Acetyl Epitalon 5 mg</h4>
+                    <div class="price">$85.00</div>
+                    <a href="payment.html?product=N-Acetyl%20Epitalon%205%20mg&price=85.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=NeuroPinealon&price=85.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Pinealon-5-mg-2-v2.jpeg" alt="NeuroPinealon" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>NeuroPinealon</h4>
+                    <div class="price">$85.00</div>
+                    <div class="dosages">5mg — $85.00<br>10mg — $115.00</div>
+                    <a href="payment.html?product=NeuroPinealon&price=85.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=VIP&price=95.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/VIP-5-mg-2-v2.jpeg" alt="VIP" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>VIP</h4>
+                    <div class="price">$95.00</div>
+                    <div class="dosages">5mg — $95.00<br>10mg — $140.00</div>
+                    <a href="payment.html?product=VIP&price=95.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Selank&price=55.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Selank-5-mg-2-v2.jpeg" alt="Selank" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Selank</h4>
+                    <div class="price">$55.00</div>
+                    <div class="dosages">5mg — $55.00<br>10mg — $85.00</div>
+                    <a href="payment.html?product=Selank&price=55.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Semax&price=55.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Semax-5-mg-2-v2.jpeg" alt="Semax" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Semax</h4>
+                    <div class="price">$55.00</div>
+                    <div class="dosages">5mg — $55.00<br>10mg — $85.00</div>
+                    <a href="payment.html?product=Semax&price=55.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=DSIP%205%20mg&price=90.00&dosage=5mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/DSIP-5-v2.jpeg" alt="DSIP" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>DSIP</h4>
+                    <div class="price">$90.00</div>
+                    <div class="dosages">5 mg</div>
+                    <a href="payment.html?product=DSIP%205%20mg&price=90.00&dosage=5mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Oxytocin%202mg&price=65.00&dosage=2mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Oxytocin-2-mg-2-v2.jpeg" alt="Oxytocin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Oxytocin</h4>
+                    <div class="price">$65.00</div>
+                    <div class="dosages">2 mg</div>
+                    <a href="payment.html?product=Oxytocin%202mg&price=65.00&dosage=2mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=P21%2010%20mg&price=190.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/P21-10-mg-2-v2.jpeg" alt="P21" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>P21</h4>
+                    <div class="price">$190.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=P21%2010%20mg&price=190.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Reproductive</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <a href="payment.html?product=Oxytocin%202mg&price=65.00&dosage=2mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Oxytocin-2-mg-2-v2.jpeg" alt="Oxytocin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Oxytocin</h4>
+                    <div class="price">$65.00</div>
+                    <div class="dosages">2 mg</div>
+                    <a href="payment.html?product=Oxytocin%202mg&price=65.00&dosage=2mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=Gonadorelin%202%20mg&price=55.00&dosage=2mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/Gonadorelin-2-mg-2-v2.jpeg" alt="Gonadorelin" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>Gonadorelin</h4>
+                    <div class="price">$55.00</div>
+                    <div class="dosages">2 mg</div>
+                    <a href="payment.html?product=Gonadorelin%202%20mg&price=55.00&dosage=2mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <a href="payment.html?product=PT-141%2010%20mg&price=105.00&dosage=10mg" style="display: block; text-decoration: none;">
+                        <img src="./image1_files/PT-141-10-mg-2-v2.jpeg" alt="PT-141" style="width: 100%; height: 130px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; cursor: pointer;">
+                    </a>
+                    <h4>PT-141</h4>
+                    <div class="price">$105.00</div>
+                    <div class="dosages">10 mg</div>
+                    <a href="payment.html?product=PT-141%2010%20mg&price=105.00&dosage=10mg" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="who-we-are">
+            <img src="./image1_files/hero-experiment.jpeg" alt="Timer Peptides Laboratory" class="who-we-are-image">
+            <div class="who-we-are-content">
+                <h2>Who We Are</h2>
+                <p>Timer Peptides is a USA-based manufacturer committed to producing the highest-quality, physician-grade peptides available. Our facility operates under strict quality-control standards, with every batch independently tested before shipment.</p>
+                <p>We believe our customers deserve reliable, consistent compounds. That is why we stand behind every product we ship — from synthesis to your door in as little as two days.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">◆</div>
+                <div>
+                    <div class="footer-brand-title">TIMER PEPTIDES</div>
+                    <div class="footer-brand-text">High-purity, physician-grade peptides manufactured and batch-tested in the USA.</div>
+                    <a class="footer-phone" href="tel:+18187911343">+1 (818) 791-1343</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Navigation</div>
+                <a href="index.html">Home</a>
+                <a href="shop.html">All Peptides</a>
+                <a href="coas.html">COAs</a>
+                <a href="company.html">Our Company</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="footer-column">
+                <div class="footer-heading">Legal</div>
+                <a href="legal.html">Legal</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Timer Peptides. All rights reserved. For Research Use Only.</div>
+    </footer>
+    <script>
+        // Slide definitions: each slide has title, eyebrow, text, background and three bottle images
+        const slideData = [
+            {
+                title: 'Peptide Blends',
+                eyebrow: 'Manufactured in the USA • Batch Produced, Batch Tested',
+                heroText: 'Pre-formulated, physician-grade blends designed for streamlined protocols — the same USA manufacturing and batch testing.',
+                background: 'hero-slide-1.jpeg',
+                left: 'CJC1295-Ipamorelin-10-mg-2-v2.jpeg',
+                center: 'Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg',
+                right: 'Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg'
+            },
+            {
+                title: 'Single Peptides',
+                eyebrow: 'Targeted, Physician-Grade Formulations',
+                heroText: 'Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.',
+                background: 'hero-slide-2.jpeg',
+                left: 'Epithalon-10-mg-2-v2.jpeg',
+                center: 'Retatrutide-5-mg-2-v2.jpeg',
+                right: 'Semax-5-mg-2-v2.jpeg'
+            },
+            {
+                title: 'Regenerative Blends',
+                eyebrow: 'Performance & Recovery',
+                heroText: 'Blends built to support recovery and tissue repair, formulated with proven regenerative peptides.',
+                background: 'hero-slide-3.jpeg',
+                left: 'BPC-5-v2.jpeg',
+                center: 'BPCTB-10-v2.jpeg',
+                right: 'TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg'
+            }
+        ];
+
+        let currentSlide = 0;
+        const hero = document.querySelector('.hero');
+        const heroTitle = document.getElementById('heroTitle');
+        const heroText = document.getElementById('heroText');
+        const heroEyebrow = document.getElementById('heroEyebrow');
+        const heroDots = document.getElementById('heroDots');
+        const heroPrev = document.getElementById('heroPrev');
+        const heroNext = document.getElementById('heroNext');
+
+        function initializeHeroDots() {
+            slideData.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (index === currentSlide ? ' active' : '');
+                dot.onclick = () => goToSlide(index);
+                heroDots.appendChild(dot);
+            });
+        }
+
+        function updateHeroSlide(n) {
+            const slide = slideData[n];
+            if (!slide || !hero) return;
+
+            // update text
+            heroTitle.textContent = slide.title;
+            heroText.textContent = slide.heroText;
+            heroEyebrow.textContent = slide.eyebrow;
+
+            // update bottle images
+            const leftImg = document.querySelector('.bottle-left img');
+            const centerImg = document.querySelector('.bottle-center img');
+            const rightImg = document.querySelector('.bottle-right img');
+            if (leftImg) { leftImg.src = `./image1_files/${slide.left}`; leftImg.alt = slide.left.replace(/[-_]/g, ' '); }
+            if (centerImg) { centerImg.src = `./image1_files/${slide.center}`; centerImg.alt = slide.center.replace(/[-_]/g, ' '); }
+            if (rightImg) { rightImg.src = `./image1_files/${slide.right}`; rightImg.alt = slide.right.replace(/[-_]/g, ' '); }
+
+            hero.style.backgroundImage = `linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0.98)), url('./image1_files/${slide.background}')`;
+            hero.style.backgroundPosition = 'center center';
+            hero.style.backgroundSize = 'cover';
+            hero.style.backgroundRepeat = 'no-repeat';
+
+            document.querySelectorAll('.hero-dots .dot').forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === n);
+            });
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slideData.length) % slideData.length;
+            updateHeroSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateHeroSlide(currentSlide);
+        }
+
+        heroPrev?.addEventListener('click', () => changeSlide(-1));
+        heroNext?.addEventListener('click', () => changeSlide(1));
+
+        initializeHeroDots();
+        updateHeroSlide(currentSlide);
+        // Auto-advance carousel disabled per user request — slides change only via arrows/dots
+        // setInterval(() => changeSlide(1), 5000);
+
+        function initAmountSelectors() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const priceDiv = card.querySelector('.price');
+                const dosagesDiv = card.querySelector('.dosages');
+                if (!priceDiv || !dosagesDiv) return;
+
+                const raw = dosagesDiv.innerHTML.trim();
+                const lines = raw.split(/<br\s*\/?>/i).map(line => line.trim()).filter(Boolean);
+                const basePrice = priceDiv.textContent.replace(/[^0-9.]/g, '').trim();
+
+                const options = lines.map(line => {
+                    const parts = line.split('—');
+                    if (parts.length >= 2) {
+                        const dosage = parts[0].trim();
+                        const price = parts[1].replace(/[^0-9.]/g, '').trim();
+                        return { label: line, dosage, price };
+                    }
+                    return { label: line, dosage: line, price: basePrice };
+                }).filter(Boolean);
+
+                if (!options.length) return;
+
+                const select = document.createElement('select');
+                select.className = 'amount-select';
+                options.forEach((opt, index) => {
+                    const option = document.createElement('option');
+                    option.value = opt.price;
+                    option.dataset.dosage = opt.dosage;
+                    option.textContent = opt.label;
+                    if (index === 0) option.selected = true;
+                    select.appendChild(option);
+                });
+
+                const updateCard = () => {
+                    const selected = select.selectedOptions[0];
+                    if (!selected) return;
+                    const newPrice = parseFloat(selected.value).toFixed(2);
+                    priceDiv.textContent = '$' + newPrice;
+
+                    card.querySelectorAll('a[href*="payment.html"]').forEach(anchor => {
+                        try {
+                            const url = new URL(anchor.href, window.location.href);
+                            url.searchParams.set('price', newPrice);
+                            url.searchParams.set('dosage', selected.dataset.dosage);
+                            anchor.href = url.pathname + url.search;
+                        } catch (e) {
+                            // ignore invalid links
+                        }
+                    });
+                };
+
+                dosagesDiv.innerHTML = '';
+                dosagesDiv.appendChild(select);
+                updateCard();
+
+                select.addEventListener('change', updateCard);
+            });
+        }
+
+        function getCartItems() {
+            return JSON.parse(localStorage.getItem('cartItems') || '[]');
+        }
+
+        function setCartItems(items) {
+            localStorage.setItem('cartItems', JSON.stringify(items));
+        }
+
+        function normalizeProductId(name) {
+            return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+        }
+
+        function updateCartBadge() {
+            const count = getCartItems().reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                badge.textContent = count;
+                badge.style.display = count ? 'inline-flex' : 'none';
+            }
+        }
+
+        function initAddToCart() {
+            document.querySelectorAll('.product-card a.btn-primary').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const card = btn.closest('.product-card');
+                    const productName = card.querySelector('h4')?.textContent || 'Product';
+                    const priceText = card.querySelector('.price')?.textContent || '$0.00';
+                    const dosageSelect = card.querySelector('.amount-select');
+                    const dosage = dosageSelect?.selectedOptions[0]?.dataset?.dosage || 'Standard';
+                    const image = card.querySelector('img')?.src || '';
+                    const itemId = normalizeProductId(productName + ' ' + dosage);
+                    const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+
+                    const cart = getCartItems();
+                    const existing = cart.find(item => item.id === itemId);
+                    if (existing) {
+                        existing.quantity = (existing.quantity || 1) + 1;
+                    } else {
+                        cart.push({ id: itemId, name: productName, price, dosage, image, quantity: 1 });
+                    }
+                    setCartItems(cart);
+                    updateCartBadge();
+                    showToast('✓ Added');
+                });
+            });
+        }
+
+        function initHomeProductLinks() {
+            document.querySelectorAll('.product-grid .product-card > a > img').forEach(img => {
+                const anchor = img.closest('a');
+                if (!anchor) return;
+
+                if (anchor.href.includes('payment.html')) {
+                    anchor.href = anchor.href.replace('payment.html', 'product.html');
+                }
+            });
+        }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeHeroDots();
+            initAmountSelectors();
+            initAddToCart();
+            initHomeProductLinks();
+                updateCartBadge();
+                initSearch();
+        });
+        
+        function initSearch() {
+            const searchBox = document.getElementById('homeSearchBox');
+            const searchButton = document.getElementById('searchButton');
+            const clearButton = document.getElementById('clearSearch');
+            const resultsDropdown = document.getElementById('searchResults');
+            const previewBox = document.getElementById('searchPreview');
+            
+            function getAllPeptides() {
+                const peptides = [];
+                document.querySelectorAll('.product-card').forEach(card => {
+                    const name = card.querySelector('h4')?.textContent?.trim() || '';
+                    const priceText = card.querySelector('.price')?.textContent?.trim() || '$0.00';
+                    const dosage = card.querySelector('.dosages')?.textContent?.split('\n')[0]?.trim() || '';
+                    const imageSrc = card.querySelector('img')?.src || '';
+                    const productUrl = new URL('product.html', window.location.href);
+                    productUrl.searchParams.set('product', name);
+                    productUrl.searchParams.set('price', priceText.replace(/[^0-9.]/g, ''));
+                    productUrl.searchParams.set('dosage', dosage);
+                    productUrl.searchParams.set('image', imageSrc);
+                    if (name) {
+                        peptides.push({ name, price: priceText, dosage, imageSrc, url: productUrl.href, element: card });
+                    }
+                });
+                return peptides;
+            }
+            
+            function renderResults(filtered) {
+                if (filtered.length === 0) {
+                    resultsDropdown.innerHTML = '<div style="padding:14px 18px;color:#6b7280;text-align:center;">No results found</div>';
+                    resultsDropdown.style.display = 'block';
+                    return;
+                }
+
+                resultsDropdown.innerHTML = filtered.map(p => `
+                    <div class="search-result-item" data-name="${p.name}">
+                        <img src="${p.imageSrc}" alt="${p.name}">
+                        <div class="search-result-meta">
+                            <span class="search-result-name">${p.name}</span>
+                            <span class="search-result-dosage">${p.dosage}</span>
+                        </div>
+                        <span class="search-result-price">${p.price}</span>
+                    </div>
+                `).join('');
+                resultsDropdown.style.display = 'block';
+
+                resultsDropdown.querySelectorAll('.search-result-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        const itemName = item.dataset.name;
+                        const peptide = filtered.find(p => p.name === itemName);
+                        if (peptide) {
+                            selectSearchResult(peptide);
+                        }
+                    });
+                });
+            }
+
+            function showSearchPreview(peptide) {
+                previewBox.innerHTML = `
+                    <img src="${peptide.imageSrc}" alt="${peptide.name}">
+                    <div class="search-preview-info">
+                        <span class="search-preview-name">${peptide.name}</span>
+                        <span class="search-preview-text">${peptide.dosage}</span>
+                        <span class="search-preview-price">${peptide.price}</span>
+                    </div>
+                `;
+                previewBox.style.display = 'flex';
+            }
+
+            function selectSearchResult(peptide) {
+                if (peptide.url) {
+                    window.location.href = peptide.url;
+                    return;
+                }
+
+                searchBox.value = peptide.name;
+                resultsDropdown.style.display = 'none';
+                showSearchPreview(peptide);
+
+                peptide.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                peptide.element.style.transition = 'box-shadow 0.2s ease';
+                peptide.element.style.boxShadow = '0 0 0 3px rgba(0, 74, 173, 0.3)';
+                setTimeout(() => {
+                    peptide.element.style.boxShadow = '';
+                }, 2200);
+            }
+
+            function doSearch() {
+                const query = searchBox.value.toLowerCase().trim();
+                if (!query) {
+                    resultsDropdown.style.display = 'none';
+                    previewBox.style.display = 'none';
+                    return;
+                }
+                const allPeptides = getAllPeptides();
+                const filtered = allPeptides.filter(p => 
+                    p.name.toLowerCase().includes(query) || 
+                    p.dosage.toLowerCase().includes(query)
+                );
+                renderResults(filtered);
+            }
+
+            function updateClearVisibility() {
+                clearButton.style.display = searchBox.value.trim() ? 'inline-flex' : 'none';
+            }
+
+            function clearSearch() {
+                searchBox.value = '';
+                resultsDropdown.style.display = 'none';
+                previewBox.style.display = 'none';
+                updateClearVisibility();
+                searchBox.focus();
+            }
+
+            searchBox.addEventListener('input', () => {
+                updateClearVisibility();
+                doSearch();
+            });
+            searchButton.addEventListener('click', () => {
+                doSearch();
+                const firstResult = resultsDropdown.querySelector('.search-result-item');
+                if (firstResult) {
+                    firstResult.click();
+                }
+            });
+            clearButton.addEventListener('click', clearSearch);
+            searchBox.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    doSearch();
+                    const firstResult = resultsDropdown.querySelector('.search-result-item');
+                    if (firstResult) {
+                        firstResult.click();
+                    }
+                }
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#homeSearchBox') && !e.target.closest('#searchResults') && !e.target.closest('#searchButton')) {
+                    resultsDropdown.style.display = 'none';
+                }
+            });
+        }
+
+            // Cart drawer removed; clicking the cart navigates to the cart page.
+            // Cart drawer removed; clicking the cart navigates to the cart page.
+    </script>
+    <!-- Cart drawer removed; cart opens on the cart page -->
+</body>
+</html>

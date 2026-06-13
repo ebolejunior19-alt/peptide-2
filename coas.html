@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates of Analysis - Timer Peptides</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8fafc; color: #111827; }
+        .page-container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .header h1 { font-size: 36px; color: #111827; }
+        .header p { color: #475569; max-width: 760px; line-height: 1.8; margin-top: 12px; }
+        .back-link { color: #004aad; text-decoration: none; font-weight: 700; }
+        .search-box { width: 100%; max-width: 560px; padding: 14px 18px; border-radius: 16px; border: 1px solid #d1d5db; background: white; font-size: 15px; color: #111827; margin-top: 24px; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 30px; }
+        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 40px rgba(15,23,42,0.08); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 28px 50px rgba(15,23,42,0.12); }
+        .card img { width: 100%; height: 360px; object-fit: contain; display: block; background: #f8fafc; }
+        .card-body { padding: 24px; }
+        .card-title { font-size: 20px; font-weight: 800; margin-bottom: 10px; color: #111827; }
+        .card-subtitle { font-size: 15px; color: #475569; margin-bottom: 18px; line-height: 1.6; }
+        .card-detail { color: #0f172a; font-size: 14px; font-weight: 700; margin-bottom: 20px; }
+        .card-button { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 999px; background: #004aad; color: white; text-decoration: none; font-weight: 700; transition: background 0.2s; }
+        .card-button:hover { background: #00357a; }
+        .card-button span { margin-left: 8px; }
+        .section-title { margin-top: 42px; font-size: 28px; color: #111827; }
+        .section-text { color: #475569; line-height: 1.8; margin-top: 10px; max-width: 760px; }
+        @media (max-width: 840px) { .header { flex-direction: column; align-items: flex-start; gap: 18px; } }
+        .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
+        .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
+        .footer-brand { display: flex; gap: 18px; align-items: flex-start; max-width: 420px; }
+        .footer-logo { width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #004aad, #0066ff); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 20px; font-weight: 800; }
+        .footer-brand-title { font-size: 16px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: white; margin-bottom: 10px; }
+        .footer-brand-text { color: #cbd5db; font-size: 14px; line-height: 1.8; }
+        .footer-phone { display: inline-block; margin-top: 14px; color: #ffffff; font-weight: 700; text-decoration: none; }
+        .footer-column { min-width: 180px; display: flex; flex-direction: column; gap: 12px; }
+        .footer-heading { font-size: 13px; color: #f8fafc; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+        .site-footer a { color: #d1d5db; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .site-footer a:hover { color: #ffffff; }
+        .footer-bottom { max-width: 1400px; margin: 28px auto 0; border-top: 1px solid #22272f; padding-top: 18px; text-align: center; font-size: 13px; color: #9ca3af; }
+        @media (max-width: 840px) { .footer-grid { flex-direction: column; gap: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="header">
+            <div>
+                <h1>Certificates of Analysis</h1>
+                <p>Every batch is independently tested by Freedom Diagnostics using HPLC and mass spectrometry. Browse COAs for our top peptides and verify purity and identity.</p>
+                <input type="search" class="search-box" placeholder="Search compounds...">
+            </div>
+            <a class="back-link" href="index.html">← Back to Home</a>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <img src="OIP.jpg" alt="BPC-157 COA">
+                <div class="card-body">
+                    <div class="card-title">BPC-157</div>
+                    <div class="card-subtitle">Certificate of Analysis for BPC-157 peptide</div>
+                    <div class="card-detail">Purity 99.07% · Lot BPC25-10-002</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="OIP.jpg" alt="Tirzepatide COA">
+                <div class="card-body">
+                    <div class="card-title">Tirzepatide</div>
+                    <div class="card-subtitle">Verified purity and identity for Tirzepatide formulation</div>
+                    <div class="card-detail">Purity 99.39% · Lot TP-TRZ-10-001</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="OIP.jpg" alt="Retatrutide COA">
+                <div class="card-body">
+                    <div class="card-title">Retatrutide</div>
+                    <div class="card-subtitle">Verified Freedom Diagnostics-style COA image</div>
+                    <div class="card-detail">Purity 99.39% · Lot 0362</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="OIP.jpg" alt="Cagrilintide COA">
+                <div class="card-body">
+                    <div class="card-title">Cagrilintide</div>
+                    <div class="card-subtitle">Independent lab certificate for Cagrilintide</div>
+                    <div class="card-detail">Purity 99.945% · Lot CAG26-10-001</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="OIP.jpg" alt="GHK-Cu COA">
+                <div class="card-body">
+                    <div class="card-title">GHK-Cu</div>
+                    <div class="card-subtitle">Certificate of Analysis for GHK-Cu</div>
+                    <div class="card-detail">Purity 98.50% · Lot GHK50-2026-01</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="OIP.jpg" alt="Semax COA">
+                <div class="card-body">
+                    <div class="card-title">Semax</div>
+                    <div class="card-subtitle">Laboratory certificate for Semax</div>
+                    <div class="card-detail">Purity 98.72% · Lot SMX-05-2026</div>
+                    <a href="OIP.jpg" target="_blank" class="card-button">View COA <span>→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">How our COAs work</div>
+        <p class="section-text">Each certificate includes batch numbers, purity results, appearance, and analytical methods. Use these reports for confidence in product quality and regulatory transparency.</p>
+    </div>
+</body>
+</html>
