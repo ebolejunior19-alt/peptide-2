@@ -59,72 +59,97 @@
             gap: 2.5rem;
             align-items: center;
             margin-bottom: 0;
-            padding: 60px 56px 64px;
-            min-height: 76vh;
+            padding: 40px 48px 44px;
+            min-height: 60vh;
             position: relative;
             overflow: hidden;
-            background-image: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(250,250,250,0.98)), url('./image1_files/hero-slide-1.jpeg');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
+            background-color: #ffffff;
+            /* hero background image removed per user request */
+            color: #0f172a;
         }
-        .hero::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at left 20% top 20%, rgba(255,255,255,0.74), transparent 32%),
-                        radial-gradient(circle at right 25% bottom 20%, rgba(0,74,173,0.12), transparent 28%);
-            pointer-events: none;
-            z-index: 1;
+        .hero::before {
+            /* decorative background removed */
+            display: none;
         }
-        .hero-copy,
-        .hero-media,
-        .hero-controls {
+        .hero-copy, .hero-media, .hero-controls {
             position: relative;
             z-index: 2;
         }
-        .hero-controls, .hero-dots { display: flex; pointer-events: none; }
-        .hero-prev, .hero-next { pointer-events: auto; width: 44px; height: 44px; border-radius: 999px; background: rgba(255,255,255,0.98); border: 1px solid rgba(0,0,0,0.06); display: grid; place-items: center; box-shadow: 0 8px 20px rgba(2,6,23,0.12); z-index: 20; transition: transform 0.14s ease, box-shadow 0.14s ease; }
-        .hero-prev { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); }
-        .hero-next { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); }
-        .hero-prev, .hero-next { font-size: 1.15rem; color: #0f4cba; }
-        .hero-prev:hover, .hero-next:hover { transform: translateY(-50%) scale(1.06); box-shadow: 0 12px 28px rgba(2,6,23,0.14); }
-        .hero-dots { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); gap: 0.6rem; pointer-events: auto; z-index: 18; display:flex; align-items:center; }
-        .hero-dots .dot { width: 10px; height: 10px; border-radius: 999px; background: #d1d5db; transition: all 0.22s ease; box-shadow: none; border: none; }
-        .hero-dots .dot.active { width: 30px; height: 10px; border-radius: 999px; background: #0f4cba; box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+        .hero-card {
+            width: 100%;
+            max-width: 640px;
+            background: rgba(255,255,255,0.96);
+            border: 1px solid rgba(2,6,23,0.04);
+            border-radius: 20px;
+            padding: 3.25rem 3.25rem 3.5rem;
+            box-shadow: 0 28px 70px rgba(2,6,23,0.12);
+        }
+        .hero-card .eyebrow {
+            display: inline-flex;
+            margin-bottom: 1rem;
+            color: #0f4cba;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+        }
         .hero h1 {
-            font-size: clamp(2.4rem, 4.7vw, 3.5rem);
-            color: #004aad;
+            font-size: clamp(3rem, 5.5vw, 4.8rem);
+            color: #004AAD;
             font-weight: 900;
-            margin: 0 0 14px 0;
+            margin: 0 0 18px 0;
             line-height: 1.02;
             letter-spacing: -0.02em;
         }
-
         .hero-text {
-            color: #1f2937;
-            line-height: 1.65;
-            margin-bottom: 16px;
-            font-size: 0.95rem;
-            max-width: 26rem;
+            color: #334155;
+            line-height: 1.85;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            max-width: 36rem;
+            font-weight: 600;
+        }
+        .hero-description {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 34rem;
         }
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-bottom: 16px;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.85rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.88);
+            border: 1px solid rgba(203,213,225,0.9);
+            color: #0f172a;
+            font-size: 0.825rem;
+            font-weight: 700;
         }
         .button {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.25rem;
+            padding: 1rem 2rem;
             border-radius: 999px;
             font-weight: 700;
             text-decoration: none;
             color: #ffffff;
             background: #004aad;
-            font-size: 0.82rem;
+            font-size: 0.95rem;
             transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
         }
         .button:hover {
@@ -133,105 +158,130 @@
             box-shadow: 0 20px 40px rgba(0, 74, 173, 0.2);
         }
         .button-secondary {
-            background: rgba(255,255,255,0.95);
-            color: #111827;
-            border: 1px solid #d1d5db;
+            background: rgba(255,255,255,0.94);
+            color: #0f172a;
+            border: 1px solid rgba(148,163,184,0.9);
         }
         .button-secondary:hover {
             background: #f8fafc;
-        }
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1rem;
-            color: #1f2937;
-            font-weight: 600;
-        }
-        .hero-stats strong {
-            display: block;
-            font-size: 1.2rem;
             color: #004aad;
         }
-        .hero-media {
+        .hero-copy,
+        .hero-media,
+        .hero-controls {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-controls, .hero-dots {
             display: flex;
-            justify-content: flex-end;
-            max-width: 620px;
+            pointer-events: none;
         }
-        .hero-card {
-            width: 100%;
-            max-width: 620px;
-            background: rgba(255,255,255,0.96);
-            border: 1px solid rgba(15,23,42,0.08);
-            border-radius: 32px;
-            padding: 3rem 3rem 3.5rem;
-            box-shadow: 0 32px 90px rgba(2,6,23,0.14);
-            backdrop-filter: blur(10px);
+        .hero-prev, .hero-next {
+            pointer-events: auto;
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.98);
+            border: 1px solid rgba(0,0,0,0.06);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 8px 20px rgba(2,6,23,0.12);
+            z-index: 20;
+            transition: transform 0.14s ease, box-shadow 0.14s ease;
         }
-        .hero-card .eyebrow {
-            display: inline-flex;
-            margin-bottom: 1rem;
-            color: #004aad;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+        .hero-prev {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
         }
-        .hero-card h1 {
-            margin: 0 0 1rem 0;
-            font-size: clamp(2.8rem, 5vw, 4.8rem);
-            line-height: 1.02;
-            letter-spacing: -0.04em;
-            color: #00347f;
-            font-weight: 900;
+        .hero-next {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
         }
-        .hero-card .hero-text {
-            color: #1f2937;
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 1.6rem;
-            max-width: 34rem;
-            font-weight: 600;
+        .hero-prev, .hero-next {
+            font-size: 1.15rem;
+            color: #0f4cba;
         }
-
-        .hero-description {
-            color: #475569;
-            font-size: 1rem;
-            line-height: 1.75;
-            margin-bottom: 1.9rem;
-            max-width: 30rem;
+        .hero-prev:hover, .hero-next:hover {
+            transform: translateY(-50%) scale(1.06);
+            box-shadow: 0 12px 28px rgba(2,6,23,0.14);
         }
-        .hero-buttons { margin-bottom: 0; }
-        .button { padding: 0.95rem 2rem; font-size: 0.95rem; }
+        .hero-dots {
+            position: absolute;
+            left: 50%;
+            bottom: 22px;
+            transform: translateX(-50%);
+            gap: 0.6rem;
+            pointer-events: auto;
+            z-index: 18;
+            display: flex;
+            align-items: center;
+        }
+        .hero-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #d1d5db;
+            transition: all 0.22s ease;
+            box-shadow: none;
+            border: none;
+        }
+        .hero-dots .dot.active {
+            width: 30px;
+            height: 10px;
+            border-radius: 999px;
+            background: #0f4cba;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+        }
         .hero-carousel-wrapper { position: relative; z-index: 3; width: 100%; }
         .btn { padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; cursor: pointer; border: none; font-size: 14px; transition: all 0.2s; }
         .btn-primary { background: #004AAD; color: white; }
         .btn-primary:hover { background: #003A87; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,74,173,0.3); }
         .btn-secondary { background: white; color: #111827; border: 2px solid #e5e7eb; }
         .btn-secondary:hover { background: #f3f4f6; border-color: #004AAD; }
-        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; max-width: 520px; min-height: 320px; }
+        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; max-width: 480px; min-height: 220px; }
         .carousel-container { position: relative; width: 100%; }
-        .carousel-container.full-width { background: rgba(255,255,255,0.9); border-radius: 32px; padding: 60px 50px 60px 80px; min-height: 100vh; position: relative; max-width: 1500px; margin: 0 auto 0 0; display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; gap: 60px; box-shadow: 0 40px 90px rgba(14,35,90,0.12); }
+        .carousel-container.full-width { background: rgba(255,255,255,0.9); border-radius: 28px; padding: 40px 30px 40px 40px; min-height: 70vh; position: relative; max-width: 1200px; margin: 0 auto 0 0; display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 36px; box-shadow: 0 30px 70px rgba(14,35,90,0.10); }
         .carousel-slide { display: none; animation: fadeIn 0.5s; }
         .carousel-slide.active { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center; width: 100%; }
         .slide-content-left { text-align: left; padding: 60px 40px 60px 40px; background: white; border-radius: 28px; box-shadow: 0 28px 70px rgba(0,0,0,0.12); max-width: 520px; }
-        .slide-title { font-size: 56px; color: #004AAD; font-weight: 800; margin-bottom: 16px; line-height: 1.1; }
-        .slide-subtitle { font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 20px; }
-        .slide-text { font-size: 17px; color: #6b7280; line-height: 1.8; margin-bottom: 36px; }
+        .slide-title { font-size: 40px; color: #004AAD; font-weight: 800; margin-bottom: 12px; line-height: 1.08; }
+        .slide-subtitle { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 14px; }
+        .slide-text { font-size: 15px; color: #6b7280; line-height: 1.6; margin-bottom: 22px; }
         .slide-content-right { display: flex; align-items: center; justify-content: center; position: relative; filter: drop-shadow(0 5px 20px rgba(0,0,0,0.1)); }
-        .bottle-display { position: relative; width: 100%; height: 320px; display: flex; align-items: center; justify-content: flex-end; }
+        .bottle-display { position: relative; width: 100%; height: 240px; display: flex; align-items: center; justify-content: flex-end; }
         /* hide decorative blurred background so bottles read as foreground elements */
         .bottle-background { display: none; }
-        .bottle-container { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: flex-end; z-index: 2; }
-        .bottle { position: absolute; display: flex; align-items: center; justify-content: center; }
-        .bottle img { max-height: 260px; width: auto; object-fit: contain; background: transparent; display: block; border-radius: 6px; box-shadow: 0 28px 60px rgba(2,6,23,0.28); }
-        /* White rim to visually separate the bottle from the background */
-        .bottle::before { content: ''; position: absolute; inset: -8px; border-radius: 10px; background: rgba(255,255,255,0.9); z-index: -1; }
-        .bottle-left { right: 56%; transform: translateX(-30px) rotateZ(-8deg) scale(0.86); z-index: 3; }
-        .bottle-center { right: 30%; transform: translateX(-6px) translateY(-6px) scale(1.08); z-index: 9; }
-        .bottle-right { right: 6%; transform: translateX(20px) rotateZ(6deg) scale(0.9); z-index: 4; }
-        .slide-content-right img { max-width: 100%; max-height: 380px; object-fit: contain; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        /* position the bottle group toward the right side like the reference */
+        .bottle-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 520px; height: 300px; pointer-events: none; z-index: 8; display:block; isolation: isolate; }
+        .hero-nav-button { z-index: 12; }
+        .bottle img { pointer-events: auto; cursor: pointer; display: block; max-width: 100%; height: auto; mix-blend-mode: multiply; background-color: transparent; }
+        .bottle { position: absolute; display: flex; align-items: center; justify-content: center; pointer-events: auto; will-change: transform; }
+        .bottle img { max-height: 260px; width: auto; object-fit: contain; background: transparent; display: block; border-radius: 12px; box-shadow: 0 40px 100px rgba(2,6,23,0.28); cursor: pointer; transition: transform 0.18s ease, filter 0.18s ease; }
+        .bottle img:hover { transform: scale(1.06); filter: drop-shadow(0 18px 48px rgba(0,0,0,0.28)); }
+        /* Soft halo behind bottles to avoid sharp rectangular artifacts */
+        .bottle::before {
+            content: '';
+            position: absolute;
+            inset: -14px;
+            border-radius: 18px;
+            background: radial-gradient(circle at 50% 36%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 30%, rgba(255,255,255,0.80) 48%, rgba(255,255,255,0.45) 62%, rgba(255,255,255,0.15) 78%, transparent 86%);
+            filter: blur(6px);
+            box-shadow: 0 36px 110px rgba(2,6,23,0.20);
+            z-index: -2;
+            pointer-events: none;
+        }
+        /* positions relative to centered container to create tight overlap like the reference image */
+        .bottle-left { left: 22%; transform: translateX(-22%) translateY(36px) rotateZ(-8deg) scale(0.90); z-index: 6; filter: brightness(0.96) saturate(0.98); }
+        .bottle-center { left: 50%; transform: translateX(-50%) translateY(-92px) scale(1.60); z-index: 20; }
+        .bottle-right { left: 78%; transform: translateX(-78%) translateY(36px) rotateZ(8deg) scale(0.90); z-index: 6; filter: brightness(0.96) saturate(0.98); }
+        .bottle-center img { box-shadow: 0 52px 140px rgba(2,6,23,0.4); }
+        .slide-content-right img { max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .carousel-slide img { display: block; margin: 0 auto; max-width: 100%; height: 340px; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .carousel-slide img { display: block; margin: 0 auto; max-width: 100%; height: 260px; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
         .who-we-are { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin: 80px auto 60px; max-width: 1400px; background: white; border-radius: 24px; padding: 50px; box-shadow: 0 18px 40px rgba(15,23,42,0.06); }
         .who-we-are-image { width: 100%; max-width: 520px; max-height: 420px; object-fit: cover; border-radius: 16px; }
         .who-we-are-content h2 { font-size: 42px; font-weight: 800; color: #111827; margin-bottom: 28px; }
@@ -327,15 +377,11 @@
     </style>
 </head>
 <body>
-    <div class="topbar">
-        Need help? Text us, and a team member will reply in minutes <a href="tel:+18187911343">+1 (818) 791-1343</a>
-    </div>
-
     <header class="header">
         <div class="header-content">
-            <a href="cart.html" class="logo-section">
+            <a href="index.html" class="logo-section">
                 <div class="logo-box">◆</div>
-                <div class="logo">TIMER PEPTIDES</div>
+                <div class="logo">FACTOR PEPTIDES</div>
             </a>
             <div class="nav-search-container">
                 <nav class="nav">
@@ -381,32 +427,36 @@
         <section class="hero" id="home">
             <div class="hero-copy">
                 <div class="hero-card">
-                    <span class="eyebrow" id="heroEyebrow">Manufactured in the USA • Batch Produced, Batch Tested</span>
-                    <h1 id="heroTitle">Peptide Blends</h1>
-                    <p class="hero-text" id="heroText">Pre-Formulated, Physician-Grade Blends</p>
-                    <p class="hero-description">Convenient multi-peptide blends for streamlined protocols — the same USA manufacturing and batch testing.</p>
+                    <span class="eyebrow" id="heroEyebrow">Targeted, Physician-Grade Formulations</span>
+                    <h1 id="heroTitle">Single Peptides</h1>
+                    <p class="hero-text" id="heroText">Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.</p>
+                    <p class="hero-description" id="heroDescription">Simple, physician-quality peptide vials for research and wellness programs.</p>
                     <div class="hero-buttons">
-                        <a href="#blends" class="button">Shop Blends</a>
+                        <a href="shop.html" id="shopBlendsHero" class="button">Shop Peptides</a>
+                        <a href="coas.html" class="button button-secondary">View COAs</a>
+                    </div>
+                    <div class="hero-badges">
+                        <span class="hero-badge">Made in the USA</span>
+                        <span class="hero-badge">Batch produced & batch tested</span>
+                        <span class="hero-badge">99%+ purity standards</span>
                     </div>
                 </div>
             </div>
             <div class="hero-media">
                 <div class="hero-image">
-                    <div class="bottle-display" aria-hidden="true">
-                        <div class="bottle-background"></div>
-                        <div class="bottle-container">
-                            <div class="bottle bottle-left">
-                                <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin">
-                            </div>
-                            <div class="bottle bottle-center">
-                                <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Blend">
-                            </div>
-                            <div class="bottle bottle-right">
-                                <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Ipamorelin">
-                            </div>
+                    <button id="heroPrev" class="hero-nav-button hero-prev" type="button" aria-label="Previous slide">◀</button>  
+                    <div class="bottle-container" aria-hidden="true">
+                        <div class="bottle bottle-left">
+                            <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin">
+                        </div>
+                        <div class="bottle bottle-center">
+                            <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Blend">
+                        </div>
+                        <div class="bottle bottle-right">
+                            <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Ipamorelin">
                         </div>
                     </div>
-                    <button id="heroPrev" class="hero-nav-button hero-prev" type="button" aria-label="Previous slide">◀</button>
+
                     <button id="heroNext" class="hero-nav-button hero-next" type="button" aria-label="Next slide">▶</button>
                     <div class="hero-dots" id="heroDots"></div>
                 </div>
@@ -423,7 +473,7 @@
                 <h3>⚗️ Peptide Blends</h3>
                 <p class="subtitle">Pre-Formulated Convenience</p>
                 <p>Multi-peptide blends engineered for specific wellness protocols. Manufactured with the same rigorous standards as our single peptides.</p>
-                <a href="#blends" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Shop Blends</a>
+                <a href="shop.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Shop Blends</a>
             </div>
         </section>
 
@@ -965,28 +1015,31 @@
         // Slide definitions: each slide has title, eyebrow, text, background and three bottle images
         const slideData = [
             {
-                title: 'Peptide Blends',
-                eyebrow: 'Manufactured in the USA • Batch Produced, Batch Tested',
-                heroText: 'Pre-formulated, physician-grade blends designed for streamlined protocols — the same USA manufacturing and batch testing.',
-                background: 'hero-slide-1.jpeg',
-                left: 'CJC1295-Ipamorelin-10-mg-2-v2.jpeg',
-                center: 'Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg',
-                right: 'Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg'
-            },
-            {
                 title: 'Single Peptides',
                 eyebrow: 'Targeted, Physician-Grade Formulations',
                 heroText: 'Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.',
-                background: 'hero-slide-2.jpeg',
+                description: 'Simple, physician-quality peptide vials for research and wellness programs.',
+                background: 'hero-experiment.jpeg',
                 left: 'Epithalon-10-mg-2-v2.jpeg',
                 center: 'Retatrutide-5-mg-2-v2.jpeg',
                 right: 'Semax-5-mg-2-v2.jpeg'
             },
             {
+                title: 'Peptide Blends',
+                eyebrow: 'Manufactured in the USA • Batch Produced, Batch Tested',
+                heroText: 'Pre-formulated, physician-grade blends designed for streamlined protocols — the same USA manufacturing and batch testing.',
+                description: 'Ready-to-use blends crafted for recovery, metabolism, and longevity routines.',
+                background: 'hero-experiment.jpeg',
+                left: 'CJC1295-Ipamorelin-10-mg-2-v2.jpeg',
+                center: 'Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg',
+                right: 'Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg'
+            },
+            {
                 title: 'Regenerative Blends',
                 eyebrow: 'Performance & Recovery',
                 heroText: 'Blends built to support recovery and tissue repair, formulated with proven regenerative peptides.',
-                background: 'hero-slide-3.jpeg',
+                description: 'Advanced recovery blends for collagen, muscle repair, and tissue support.',
+                background: 'hero-experiment.jpeg',
                 left: 'BPC-5-v2.jpeg',
                 center: 'BPCTB-10-v2.jpeg',
                 right: 'TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg'
@@ -1011,6 +1064,58 @@
             });
         }
 
+        // Bottle image to product URL mapping
+        const bottleProductMap = {
+            'CJC1295-Ipamorelin-10-mg-2-v2.jpeg': { product: 'CJC1295 + Ipamorelin', price: '120.00', dosage: '10mg' },
+            'Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg': { product: 'Blend: Tesamorelin + CJC1295 + Ipamorelin', price: '195.00', dosage: 'Blend' },
+            'Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg': { product: 'Blend: Tesamorelin + Ipamorelin', price: '150.00', dosage: 'Blend' },
+            'Epithalon-10-mg-2-v2.jpeg': { product: 'Epithalon 10 mg', price: '90.00', dosage: '10mg' },
+            'Retatrutide-5-mg-2-v2.jpeg': { product: 'Retatrutide', price: '125.00', dosage: '5mg' },
+            'Semax-5-mg-2-v2.jpeg': { product: 'Semax', price: '55.00', dosage: '5mg' },
+            'BPC-5-v2.jpeg': { product: 'BPC157', price: '75.00', dosage: '5mg' },
+            'BPCTB-10-v2.jpeg': { product: 'BPC157 + TB500', price: '110.00', dosage: '10mg' },
+            'TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg': { product: 'TB-500 (Thymosin Beta-4)', price: '55.00', dosage: '5mg' }
+        };
+
+        function initBottleClickHandlers() {
+            const bottles = document.querySelectorAll('.bottle img');
+            bottles.forEach(img => {
+                img.addEventListener('click', () => {
+                    const filename = img.src.split('/').pop();
+                    const productInfo = bottleProductMap[filename];
+                    if (productInfo) {
+                        const url = new URL('product.html', window.location.href);
+                        url.searchParams.set('product', productInfo.product);
+                        url.searchParams.set('price', productInfo.price);
+                        url.searchParams.set('dosage', productInfo.dosage);
+                        window.location.href = url.href;
+                    }
+                });
+            });
+        }
+
+        function initShopBlendsButton() {
+            const btn = document.getElementById('shopBlendsHero');
+            if (!btn) return;
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const slide = slideData[currentSlide];
+                if (!slide) { window.location.href = 'shop.html'; return; }
+                const filename = slide.center;
+                const productInfo = bottleProductMap[filename];
+                if (productInfo) {
+                    const url = new URL('product.html', window.location.href);
+                    url.searchParams.set('product', productInfo.product);
+                    url.searchParams.set('price', productInfo.price);
+                    url.searchParams.set('dosage', productInfo.dosage);
+                    window.location.href = url.href;
+                } else {
+                    // fallback: go to shop
+                    window.location.href = 'shop.html';
+                }
+            });
+        }
+
         function updateHeroSlide(n) {
             const slide = slideData[n];
             if (!slide || !hero) return;
@@ -1019,6 +1124,10 @@
             heroTitle.textContent = slide.title;
             heroText.textContent = slide.heroText;
             heroEyebrow.textContent = slide.eyebrow;
+            const heroDescription = document.getElementById('heroDescription');
+            if (heroDescription) {
+                heroDescription.textContent = slide.description || '';
+            }
 
             // update bottle images
             const leftImg = document.querySelector('.bottle-left img');
@@ -1028,7 +1137,7 @@
             if (centerImg) { centerImg.src = `./image1_files/${slide.center}`; centerImg.alt = slide.center.replace(/[-_]/g, ' '); }
             if (rightImg) { rightImg.src = `./image1_files/${slide.right}`; rightImg.alt = slide.right.replace(/[-_]/g, ' '); }
 
-            hero.style.backgroundImage = `linear-gradient(180deg, rgba(255,255,255,0.92), rgba(250,250,250,0.98)), url('./image1_files/${slide.background}')`;
+            hero.style.backgroundImage = `linear-gradient(180deg, rgba(15,23,42,0.12), rgba(15,23,42,0.08)), url('./image1_files/${slide.background}')`;
             hero.style.backgroundPosition = 'center center';
             hero.style.backgroundSize = 'cover';
             hero.style.backgroundRepeat = 'no-repeat';
@@ -1041,18 +1150,22 @@
         function changeSlide(direction) {
             currentSlide = (currentSlide + direction + slideData.length) % slideData.length;
             updateHeroSlide(currentSlide);
+            initBottleClickHandlers();
+            initShopBlendsButton();
         }
 
         function goToSlide(n) {
             currentSlide = n;
             updateHeroSlide(currentSlide);
+            initBottleClickHandlers();
+            initShopBlendsButton();
         }
 
         heroPrev?.addEventListener('click', () => changeSlide(-1));
         heroNext?.addEventListener('click', () => changeSlide(1));
 
-        initializeHeroDots();
-        updateHeroSlide(currentSlide);
+        initBottleClickHandlers();
+        initShopBlendsButton();
         // Auto-advance carousel disabled per user request — slides change only via arrows/dots
         // setInterval(() => changeSlide(1), 5000);
 
@@ -1187,11 +1300,12 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             initializeHeroDots();
+            updateHeroSlide(currentSlide);
             initAmountSelectors();
             initAddToCart();
             initHomeProductLinks();
-                updateCartBadge();
-                initSearch();
+            updateCartBadge();
+            initSearch();
         });
         
         function initSearch() {
