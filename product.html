@@ -41,6 +41,14 @@
         .btn-primary { background: #0f4cba; color: white; }
         .btn-secondary { background: white; color: #111827; border: 1px solid #e5e7eb; }
         .product-description { background: white; border: 1px solid #e5e7eb; border-radius: 24px; padding: 24px; line-height: 1.8; color: #4b5563; box-shadow: 0 18px 40px rgba(15,23,42,0.05); }
+        .product-carousel { position: relative; background: white; border-radius: 24px; border: 1px solid #e5e7eb; padding: 18px; box-shadow: 0 18px 40px rgba(15,23,42,0.05); margin-bottom: 32px; }
+        .product-carousel-inner { display: flex; align-items: center; justify-content: center; gap: 18px; overflow: hidden; }
+        .product-carousel-slide { min-width: 100%; display: none; align-items: center; justify-content: center; }
+        .product-carousel-slide.active { display: flex; }
+        .product-carousel-slide img { max-width: 240px; max-height: 320px; border-radius: 20px; box-shadow: 0 20px 60px rgba(15,23,42,0.12); }
+        .carousel-controls { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+        .carousel-control { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #d1d5db; background: white; color: #0f4cba; font-size: 16px; display: grid; place-items: center; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+        .carousel-control:hover { background: #eff6ff; transform: translateY(-1px); }
         .feature-list { display: grid; gap: 14px; margin-top: 14px; }
         .feature-item { display: flex; gap: 12px; align-items: flex-start; }
         .feature-item span { color: #0f4cba; font-size: 18px; line-height: 1; margin-top: 2px; }
@@ -93,6 +101,13 @@
         <section class="product-detail">
             <div class="product-image-card">
                 <img id="productImage" src="" alt="Product Image">
+                <div class="coa-container" id="coaContainer" style="display:none; margin-top:18px; text-align:left; width:100%;">
+                    <div style="font-weight:700; color:#111827; margin-bottom:6px;">Certificate of Analysis</div>
+                    <div style="color:#6b7280; font-size:13px; margin-bottom:10px;">Independent third-party HPLC purity testing by Freedom Diagnostics.</div>
+                    <a id="coaLink" href="#" target="_blank" rel="noopener">
+                        <img id="coaImage" src="" alt="Certificate of Analysis" style="max-width:560px; width:100%; height:auto; border-radius:8px; box-shadow:0 16px 40px rgba(15,23,42,0.12); display:block;" />
+                    </a>
+                </div>
             </div>
             <div class="product-summary">
                 <div>
@@ -125,6 +140,18 @@
                     </div>
                     <div class="product-note">All products are intended strictly for research and laboratory use only.</div>
                 </div>
+                <div class="product-carousel" id="productCarousel" aria-label="Product slideshow">
+                    <div class="product-carousel-inner" id="productCarouselInner">
+                        <div class="product-carousel-slide active"><img id="carouselImage0" src="" alt="Product view 1"></div>
+                        <div class="product-carousel-slide"><img id="carouselImage1" src="" alt="Product view 2"></div>
+                        <div class="product-carousel-slide"><img id="carouselImage2" src="" alt="Product view 3"></div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button id="carouselPrev" class="carousel-control" type="button" aria-label="Previous slide">◀</button>
+                        <button id="carouselNext" class="carousel-control" type="button" aria-label="Next slide">▶</button>
+                    </div>
+                </div>
+                
                 <div class="product-description" id="productDescription">
                     <p>Discover physician-grade quality, ultra-pure peptide formulations designed for research use. Each vial is batch tested and manufactured in the USA to ensure consistent potency and stability.</p>
                     <div class="feature-list">
@@ -138,7 +165,7 @@
     </main>
     <section class="page-content">
         <div class="who-we-are">
-            <img src="./image1_files/hero-experiment.jpeg" alt="Timer Peptides Laboratory" class="who-we-are-image">
+            <img src="./images/hero-experiment.jpeg" alt="Timer Peptides Laboratory" class="who-we-are-image">
             <div class="who-we-are-content">
                 <h2>Who We Are</h2>
                 <p>Timer Peptides is a USA-based manufacturer committed to producing the highest-quality, physician-grade peptides available. Our facility operates under strict quality-control standards, with every batch independently tested before shipment.</p>
@@ -178,10 +205,19 @@
         function getParam(name) {
             return new URLSearchParams(window.location.search).get(name) || '';
         }
+
+        function getParamAsInt(name, fallback = 0) {
+            const value = new URLSearchParams(window.location.search).get(name);
+            const parsed = parseInt(value, 10);
+            return Number.isFinite(parsed) ? parsed : fallback;
+        }
+
         const productName = decodeURIComponent(getParam('product')) || 'Peptide Product';
         const productPrice = parseFloat(getParam('price')) || 0;
         const productDosage = decodeURIComponent(getParam('dosage')) || 'Standard';
-        const productImage = decodeURIComponent(getParam('image')) || './image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg';
+        const productImage = decodeURIComponent(getParam('image')) || './images/CJC1295-Ipamorelin-10-mg-2-v2.jpeg';
+        const productSlide = getParamAsInt('slide', 0);
+        const productSlidePos = getParamAsInt('slidePos', 0);
 
         const productNameEl = document.getElementById('productName');
         const productDosageEl = document.getElementById('productDosage');
@@ -192,8 +228,12 @@
         const qtyPlus = document.getElementById('qtyPlus');
         const quantityValue = document.getElementById('quantityValue');
         const addToCartBtn = document.getElementById('addToCartBtn');
+        const carouselPrev = document.getElementById('carouselPrev');
+        const carouselNext = document.getElementById('carouselNext');
 
         let quantity = 1;
+        let currentCarouselIndex = Math.min(Math.max(productSlidePos, 0), 2);
+        let carouselTimer = null;
 
         function formatPrice(value) {
             return '$' + value.toFixed(2);
@@ -207,6 +247,107 @@
             productImageEl.alt = productName;
             breadcrumbEl.textContent = productName;
             quantityValue.textContent = quantity;
+            setCarouselImages(getCarouselImagesByProduct(productName, productImage));
+            updateCarousel();
+            startCarouselAutoPlay();
+            // attempt to load and display COA under the product image
+            setCoaImage();
+        }
+
+        carouselPrev?.addEventListener('click', () => changeCarousel(-1));
+        carouselNext?.addEventListener('click', () => changeCarousel(1));
+
+        function getCarouselImagesByProduct(name, baseImage) {
+            const productGallery = {
+                'CJC1295 + Ipamorelin': [baseImage, baseImage, baseImage],
+                'Blend: Tesamorelin + CJC1295 + Ipamorelin': [baseImage, baseImage, baseImage],
+                'Blend: Tesamorelin + Ipamorelin': [baseImage, baseImage, baseImage],
+                'Epithalon 10 mg': [baseImage, baseImage, baseImage],
+                'Retatrutide': [baseImage, baseImage, baseImage],
+                'Semax': [baseImage, baseImage, baseImage],
+                'BPC157': [baseImage, baseImage, baseImage],
+                'BPC157 + TB500': [baseImage, baseImage, baseImage],
+                'TB-500 (Thymosin Beta-4)': [baseImage, baseImage, baseImage]
+            };
+            return productGallery[name] || [baseImage, baseImage, baseImage];
+        }
+
+        function setCarouselImages(images) {
+            const carouselImages = [
+                document.getElementById('carouselImage0'),
+                document.getElementById('carouselImage1'),
+                document.getElementById('carouselImage2')
+            ];
+            carouselImages.forEach((img, idx) => {
+                if (img) {
+                    img.src = images[idx] || images[0];
+                    img.alt = productName;
+                }
+            });
+        }
+
+        // Attempt to display a COA (Certificate of Analysis) image under the product.
+        function setCoaImage() {
+            const container = document.getElementById('coaContainer');
+            const img = document.getElementById('coaImage');
+            const link = document.getElementById('coaLink');
+            if (!container || !img) return;
+            container.style.display = 'none';
+
+            const coaParam = getParam('coa');
+            const base = (productImage || '').split('/').pop() || '';
+            const normalizedName = productName.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+            const candidates = [];
+            if (coaParam) candidates.push(coaParam);
+            if (base) {
+                candidates.push(`./image1_files/COA-${base}`);
+                candidates.push(`./image1_files/${base.replace(/\.jpeg$/i, '-coa.jpeg')}`);
+                candidates.push(`./image1_files/${base.replace(/\.[^.]+$/, '.png')}`);
+            }
+            candidates.push(`./image1_files/COA_${normalizedName}.jpeg`);
+            candidates.push(`./image1_files/COA_${normalizedName}.png`);
+
+            let idx = 0;
+            function tryNext() {
+                if (idx >= candidates.length) { container.style.display = 'none'; return; }
+                const src = candidates[idx++];
+                img.onload = () => {
+                    container.style.display = 'block';
+                    link.href = src;
+                    img.onerror = null;
+                };
+                img.onerror = () => {
+                    // try next candidate
+                    setTimeout(tryNext, 60);
+                };
+                img.src = src;
+            }
+            tryNext();
+        }
+
+        function updateCarousel() {
+            const slides = document.querySelectorAll('.product-carousel-slide');
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentCarouselIndex);
+            });
+        }
+
+        function changeCarousel(direction) {
+            const slides = document.querySelectorAll('.product-carousel-slide');
+            currentCarouselIndex = (currentCarouselIndex + direction + slides.length) % slides.length;
+            updateCarousel();
+        }
+
+        function startCarouselAutoPlay() {
+            stopCarouselAutoPlay();
+            carouselTimer = setInterval(() => changeCarousel(1), 4000);
+        }
+
+        function stopCarouselAutoPlay() {
+            if (carouselTimer) {
+                clearInterval(carouselTimer);
+                carouselTimer = null;
+            }
         }
 
         function buildPaymentUrl() {

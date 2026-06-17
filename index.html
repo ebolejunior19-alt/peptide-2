@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer Peptides - Physician-Grade Peptides</title>
+    <title>Factor Peptides - Physician-Grade Peptides</title>
     <link rel="stylesheet" href="./image1_files/08jx~k69kja0y.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -63,8 +63,10 @@
             min-height: 60vh;
             position: relative;
             overflow: hidden;
-            background-color: #ffffff;
-            /* hero background image removed per user request */
+            background-color: transparent;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
             color: #0f172a;
         }
         .hero::before {
@@ -242,7 +244,7 @@
         .btn-primary:hover { background: #003A87; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,74,173,0.3); }
         .btn-secondary { background: white; color: #111827; border: 2px solid #e5e7eb; }
         .btn-secondary:hover { background: #f3f4f6; border-color: #004AAD; }
-        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; max-width: 480px; min-height: 220px; }
+        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; max-width: 680px; min-height: 360px; }
         .carousel-container { position: relative; width: 100%; }
         .carousel-container.full-width { background: rgba(255,255,255,0.9); border-radius: 28px; padding: 40px 30px 40px 40px; min-height: 70vh; position: relative; max-width: 1200px; margin: 0 auto 0 0; display: grid; grid-template-columns: 1fr 1.1fr; align-items: center; gap: 36px; box-shadow: 0 30px 70px rgba(14,35,90,0.10); }
         .carousel-slide { display: none; animation: fadeIn 0.5s; }
@@ -252,33 +254,34 @@
         .slide-subtitle { font-size: 16px; font-weight: 700; color: #111827; margin-bottom: 14px; }
         .slide-text { font-size: 15px; color: #6b7280; line-height: 1.6; margin-bottom: 22px; }
         .slide-content-right { display: flex; align-items: center; justify-content: center; position: relative; filter: drop-shadow(0 5px 20px rgba(0,0,0,0.1)); }
-        .bottle-display { position: relative; width: 100%; height: 240px; display: flex; align-items: center; justify-content: flex-end; }
+        .bottle-display { position: relative; width: 100%; height: 320px; display: flex; align-items: center; justify-content: center; }
         /* hide decorative blurred background so bottles read as foreground elements */
         .bottle-background { display: none; }
         /* position the bottle group toward the right side like the reference */
-        .bottle-container { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 520px; height: 300px; pointer-events: none; z-index: 8; display:block; isolation: isolate; }
+        .bottle-container { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%); width: 620px; height: 380px; pointer-events: none; z-index: 8; display:block; isolation: isolate; }
         .hero-nav-button { z-index: 12; }
+        .bottle-link { display: block; width: 100%; height: 100%; }
         .bottle img { pointer-events: auto; cursor: pointer; display: block; max-width: 100%; height: auto; mix-blend-mode: multiply; background-color: transparent; }
         .bottle { position: absolute; display: flex; align-items: center; justify-content: center; pointer-events: auto; will-change: transform; }
-        .bottle img { max-height: 260px; width: auto; object-fit: contain; background: transparent; display: block; border-radius: 12px; box-shadow: 0 40px 100px rgba(2,6,23,0.28); cursor: pointer; transition: transform 0.18s ease, filter 0.18s ease; }
-        .bottle img:hover { transform: scale(1.06); filter: drop-shadow(0 18px 48px rgba(0,0,0,0.28)); }
+        .bottle img { max-height: 220px; width: auto; object-fit: contain; background: transparent; display: block; border-radius: 16px; box-shadow: 0 40px 90px rgba(2,6,23,0.24); transition: transform 0.18s ease, filter 0.18s ease; }
+        .bottle img:hover { transform: translateY(-2px) scale(1.04); filter: drop-shadow(0 20px 50px rgba(0,0,0,0.28)); }
         /* Soft halo behind bottles to avoid sharp rectangular artifacts */
         .bottle::before {
             content: '';
             position: absolute;
-            inset: -14px;
-            border-radius: 18px;
-            background: radial-gradient(circle at 50% 36%, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 30%, rgba(255,255,255,0.80) 48%, rgba(255,255,255,0.45) 62%, rgba(255,255,255,0.15) 78%, transparent 86%);
+            inset: -16px;
+            border-radius: 24px;
+            background: radial-gradient(circle at 50% 36%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.90) 28%, rgba(255,255,255,0.78) 46%, rgba(255,255,255,0.55) 60%, rgba(255,255,255,0.20) 75%, transparent 88%);
             filter: blur(6px);
-            box-shadow: 0 36px 110px rgba(2,6,23,0.20);
+            box-shadow: 0 26px 90px rgba(2,6,23,0.18);
             z-index: -2;
             pointer-events: none;
         }
         /* positions relative to centered container to create tight overlap like the reference image */
-        .bottle-left { left: 22%; transform: translateX(-22%) translateY(36px) rotateZ(-8deg) scale(0.90); z-index: 6; filter: brightness(0.96) saturate(0.98); }
-        .bottle-center { left: 50%; transform: translateX(-50%) translateY(-92px) scale(1.60); z-index: 20; }
-        .bottle-right { left: 78%; transform: translateX(-78%) translateY(36px) rotateZ(8deg) scale(0.90); z-index: 6; filter: brightness(0.96) saturate(0.98); }
-        .bottle-center img { box-shadow: 0 52px 140px rgba(2,6,23,0.4); }
+        .bottle-left { left: 23%; transform: translateX(-23%) translateY(24px) rotateZ(-8deg) scale(0.96); z-index: 8; filter: brightness(0.99) saturate(1); }
+        .bottle-center { left: 50%; transform: translateX(-50%) translateY(-98px) scale(1.82); z-index: 20; }
+        .bottle-right { left: 77%; transform: translateX(-77%) translateY(24px) rotateZ(8deg) scale(0.96); z-index: 8; filter: brightness(0.99) saturate(1); }
+        .bottle-center img { box-shadow: 0 62px 150px rgba(2,6,23,0.4); }
         .slide-content-right img { max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .carousel-slide img { display: block; margin: 0 auto; max-width: 100%; height: 260px; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
@@ -416,6 +419,7 @@
         </div>
     </header>
 
+    <div class="topbar">Need help? Text us, and a team member will reply in minutes — <a href="tel:+18187911343">+1 (818) 791-1343</a></div>
     <div class="promo-bar">
         <span>Manufactured in the USA</span>
         <span>Batch Produced, Batch Tested</span>
@@ -427,18 +431,18 @@
         <section class="hero" id="home">
             <div class="hero-copy">
                 <div class="hero-card">
-                    <span class="eyebrow" id="heroEyebrow">Targeted, Physician-Grade Formulations</span>
-                    <h1 id="heroTitle">Single Peptides</h1>
-                    <p class="hero-text" id="heroText">Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.</p>
-                    <p class="hero-description" id="heroDescription">Simple, physician-quality peptide vials for research and wellness programs.</p>
+                    <span class="eyebrow" id="heroEyebrow">Physician-Grade, Physician-Approved</span>
+                    <h1 id="heroTitle">Buy Peptides</h1>
+                    <p class="hero-text" id="heroText">Premium, high-purity peptides — batch produced and batch tested in the USA for consistent, verifiable quality.</p>
+                    <p class="hero-description" id="heroDescription">Explore physician-grade single peptides and pre-formulated blends trusted by practitioners for purity, potency, and rapid shipping.</p>
                     <div class="hero-buttons">
-                        <a href="shop.html" id="shopBlendsHero" class="button">Shop Peptides</a>
-                        <a href="coas.html" class="button button-secondary">View COAs</a>
+                        <a href="shop.html" id="shopBlendsHero" class="button">Explore Peptides</a>
+                        <a href="shop.html" class="button button-secondary">Shop Blends</a>
                     </div>
                     <div class="hero-badges">
-                        <span class="hero-badge">Made in the USA</span>
+                        <span class="hero-badge">Manufactured in the USA</span>
                         <span class="hero-badge">Batch produced & batch tested</span>
-                        <span class="hero-badge">99%+ purity standards</span>
+                        <span class="hero-badge">Free shipping over $200</span>
                     </div>
                 </div>
             </div>
@@ -447,13 +451,19 @@
                     <button id="heroPrev" class="hero-nav-button hero-prev" type="button" aria-label="Previous slide">◀</button>  
                     <div class="bottle-container" aria-hidden="true">
                         <div class="bottle bottle-left">
-                            <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin">
+                            <a class="bottle-link" href="#">
+                                <img src="./image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg" alt="CJC1295 + Ipamorelin">
+                            </a>
                         </div>
                         <div class="bottle bottle-center">
-                            <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Blend">
+                            <a class="bottle-link" href="#">
+                                <img src="./image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Blend">
+                            </a>
                         </div>
                         <div class="bottle bottle-right">
-                            <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Ipamorelin">
+                            <a class="bottle-link" href="#">
+                                <img src="./image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg" alt="Tesamorelin Ipamorelin">
+                            </a>
                         </div>
                     </div>
 
@@ -465,14 +475,14 @@
         <section class="features">
             <div class="feature-card">
                 <h3>🧬 Single Peptides</h3>
-                <p class="subtitle">Pure, Targeted Solutions</p>
-                <p>Ultra-pure single-peptide formulations with 99%+ purity. Each vial is independently batch-tested and verified for quality and consistency.</p>
-                <a href="shop.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Explore Peptides</a>
+                <p class="subtitle">Targeted, Physician-Grade Formulations</p>
+                <p>Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.</p>
+                <a href="shop.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Shop Single Peptides</a>
             </div>
             <div class="feature-card">
                 <h3>⚗️ Peptide Blends</h3>
-                <p class="subtitle">Pre-Formulated Convenience</p>
-                <p>Multi-peptide blends engineered for specific wellness protocols. Manufactured with the same rigorous standards as our single peptides.</p>
+                <p class="subtitle">Pre-Formulated, Physician-Grade Blends</p>
+                <p>Convenient multi-peptide blends for streamlined protocols — the same USA manufacturing and batch-tested quality.</p>
                 <a href="shop.html" class="btn btn-primary" style="margin-top: 20px; display: inline-block;">Shop Blends</a>
             </div>
         </section>
@@ -515,9 +525,9 @@
         </section>
 
         <section class="section">
-            <h2>Why Timer Peptides?</h2>
-            <p>Timer Peptides stands at the forefront of peptide research and manufacturing. We specialize in producing ultra-pure, physician-grade peptides using cutting-edge synthesis methods and rigorous quality-assurance protocols. Every peptide exceeds 99% purity and is independently verified through advanced analytical testing.</p>
-            <p style="margin-top: 20px;">From synthesis to packaging, our dedicated team ensures that every product meets the highest standards of quality, safety, and efficacy. When you choose Timer Peptides, you're choosing compounds trusted by physicians and researchers worldwide.</p>
+            <h2>Why Factor Peptides?</h2>
+            <p>Factor Peptides specializes in producing ultra-pure, physician-grade peptides using cutting-edge solid-phase and solution-phase synthesis methods. Every peptide undergoes rigorous quality-assurance protocols to ensure purity levels exceeding 99%.</p>
+            <p style="margin-top: 20px;">From synthesis to packaging and delivery, our team is dedicated to delivering the highest-quality, physician-approved compounds available on the market.</p>
         </section>
 
         <section class="section" id="peptides">
@@ -974,10 +984,10 @@
         </section>
 
         <section class="who-we-are">
-            <img src="./image1_files/hero-experiment.jpeg" alt="Timer Peptides Laboratory" class="who-we-are-image">
+            <img src="./image1_files/hero-experiment.jpeg" alt="Factor Peptides Laboratory" class="who-we-are-image">
             <div class="who-we-are-content">
                 <h2>Who We Are</h2>
-                <p>Timer Peptides is a USA-based manufacturer committed to producing the highest-quality, physician-grade peptides available. Our facility operates under strict quality-control standards, with every batch independently tested before shipment.</p>
+                <p>Factor Peptides is a USA-based manufacturer committed to producing the highest-quality, physician-grade peptides available. Our facility operates under strict quality-control standards, with every batch independently tested before shipment.</p>
                 <p>We believe our customers deserve reliable, consistent compounds. That is why we stand behind every product we ship — from synthesis to your door in as little as two days.</p>
             </div>
         </section>
@@ -988,7 +998,7 @@
             <div class="footer-brand">
                 <div class="footer-logo">◆</div>
                 <div>
-                    <div class="footer-brand-title">TIMER PEPTIDES</div>
+                    <div class="footer-brand-title">FACTOR PEPTIDES</div>
                     <div class="footer-brand-text">High-purity, physician-grade peptides manufactured and batch-tested in the USA.</div>
                     <a class="footer-phone" href="tel:+18187911343">+1 (818) 791-1343</a>
                 </div>
@@ -1009,7 +1019,7 @@
                 <a href="disclaimer.html">Disclaimer</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2026 Timer Peptides. All rights reserved. For Research Use Only.</div>
+        <div class="footer-bottom">© 2026 Factor Peptides. All rights reserved. For Research Use Only.</div>
     </footer>
     <script>
         // Slide definitions: each slide has title, eyebrow, text, background and three bottle images
@@ -1019,7 +1029,7 @@
                 eyebrow: 'Targeted, Physician-Grade Formulations',
                 heroText: 'Pure single-peptide vials made to exacting standards — over 99% purity, independently batch-tested.',
                 description: 'Simple, physician-quality peptide vials for research and wellness programs.',
-                background: 'hero-experiment.jpeg',
+                background: './image1_files/hero-experiment.jpeg',
                 left: 'Epithalon-10-mg-2-v2.jpeg',
                 center: 'Retatrutide-5-mg-2-v2.jpeg',
                 right: 'Semax-5-mg-2-v2.jpeg'
@@ -1029,7 +1039,7 @@
                 eyebrow: 'Manufactured in the USA • Batch Produced, Batch Tested',
                 heroText: 'Pre-formulated, physician-grade blends designed for streamlined protocols — the same USA manufacturing and batch testing.',
                 description: 'Ready-to-use blends crafted for recovery, metabolism, and longevity routines.',
-                background: 'hero-experiment.jpeg',
+                background: './image1_files/hero-experiment.jpeg',
                 left: 'CJC1295-Ipamorelin-10-mg-2-v2.jpeg',
                 center: 'Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg',
                 right: 'Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg'
@@ -1039,7 +1049,7 @@
                 eyebrow: 'Performance & Recovery',
                 heroText: 'Blends built to support recovery and tissue repair, formulated with proven regenerative peptides.',
                 description: 'Advanced recovery blends for collagen, muscle repair, and tissue support.',
-                background: 'hero-experiment.jpeg',
+                background: './image1_files/hero-experiment.jpeg',
                 left: 'BPC-5-v2.jpeg',
                 center: 'BPCTB-10-v2.jpeg',
                 right: 'TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg'
@@ -1077,19 +1087,29 @@
             'TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg': { product: 'TB-500 (Thymosin Beta-4)', price: '55.00', dosage: '5mg' }
         };
 
+        function navigateToProduct(filename, slideIndex = currentSlide, position = 0) {
+            const productInfo = bottleProductMap[filename];
+            if (!productInfo) return;
+            const url = new URL('product.html', window.location.href);
+            url.searchParams.set('product', productInfo.product);
+            url.searchParams.set('price', productInfo.price);
+            url.searchParams.set('dosage', productInfo.dosage);
+            url.searchParams.set('image', `./image1_files/${filename}`);
+            // include a best-effort COA path so product view can display the certificate
+            url.searchParams.set('coa', `./image1_files/COA-${filename}`);
+            url.searchParams.set('slide', String(slideIndex));
+            url.searchParams.set('slidePos', String(position));
+            window.location.href = url.href;
+        }
+
         function initBottleClickHandlers() {
-            const bottles = document.querySelectorAll('.bottle img');
-            bottles.forEach(img => {
-                img.addEventListener('click', () => {
-                    const filename = img.src.split('/').pop();
-                    const productInfo = bottleProductMap[filename];
-                    if (productInfo) {
-                        const url = new URL('product.html', window.location.href);
-                        url.searchParams.set('product', productInfo.product);
-                        url.searchParams.set('price', productInfo.price);
-                        url.searchParams.set('dosage', productInfo.dosage);
-                        window.location.href = url.href;
-                    }
+            document.querySelectorAll('.bottle-link').forEach((link, index) => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const img = link.querySelector('img');
+                    if (!img) return;
+                    const filename = img.src.split('/').pop().split('?')[0];
+                    navigateToProduct(filename, currentSlide, index);
                 });
             });
         }
@@ -1108,6 +1128,9 @@
                     url.searchParams.set('product', productInfo.product);
                     url.searchParams.set('price', productInfo.price);
                     url.searchParams.set('dosage', productInfo.dosage);
+                    url.searchParams.set('image', `./image1_files/${filename}`);
+                    url.searchParams.set('slide', String(currentSlide));
+                    url.searchParams.set('slidePos', '1');
                     window.location.href = url.href;
                 } else {
                     // fallback: go to shop
@@ -1137,7 +1160,10 @@
             if (centerImg) { centerImg.src = `./image1_files/${slide.center}`; centerImg.alt = slide.center.replace(/[-_]/g, ' '); }
             if (rightImg) { rightImg.src = `./image1_files/${slide.right}`; rightImg.alt = slide.right.replace(/[-_]/g, ' '); }
 
-            hero.style.backgroundImage = `linear-gradient(180deg, rgba(15,23,42,0.12), rgba(15,23,42,0.08)), url('./image1_files/${slide.background}')`;
+            const backgroundPath = slide.background.startsWith('http') || slide.background.startsWith('/') || slide.background.startsWith('./')
+                ? slide.background
+                : `./image1_files/${slide.background}`;
+            hero.style.backgroundImage = `linear-gradient(180deg, rgba(15,23,42,0.12), rgba(15,23,42,0.08)), url('${backgroundPath}')`;
             hero.style.backgroundPosition = 'center center';
             hero.style.backgroundSize = 'cover';
             hero.style.backgroundRepeat = 'no-repeat';
@@ -1150,14 +1176,12 @@
         function changeSlide(direction) {
             currentSlide = (currentSlide + direction + slideData.length) % slideData.length;
             updateHeroSlide(currentSlide);
-            initBottleClickHandlers();
             initShopBlendsButton();
         }
 
         function goToSlide(n) {
             currentSlide = n;
             updateHeroSlide(currentSlide);
-            initBottleClickHandlers();
             initShopBlendsButton();
         }
 
@@ -1277,12 +1301,26 @@
         }
 
         function initHomeProductLinks() {
-            document.querySelectorAll('.product-grid .product-card > a > img').forEach(img => {
-                const anchor = img.closest('a');
-                if (!anchor) return;
-
-                if (anchor.href.includes('payment.html')) {
-                    anchor.href = anchor.href.replace('payment.html', 'product.html');
+            document.querySelectorAll('.product-grid .product-card a').forEach(anchor => {
+                if (!anchor.href.includes('payment.html')) return;
+                try {
+                    const url = new URL(anchor.href, window.location.href);
+                    url.pathname = url.pathname.replace(/payment\.html$/, 'product.html');
+                    if (!url.searchParams.get('image')) {
+                        const image = anchor.querySelector('img')?.src;
+                        if (image) {
+                            url.searchParams.set('image', image);
+                        }
+                    }
+                    // best-effort COA param derived from the image filename
+                    try {
+                        const imgSrc = anchor.querySelector('img')?.src || '';
+                        const imgFile = imgSrc.split('/').pop();
+                        if (imgFile) url.searchParams.set('coa', `./image1_files/COA-${imgFile}`);
+                    } catch (e) { /* ignore */ }
+                    anchor.href = url.pathname + url.search;
+                } catch (e) {
+                    // ignore invalid links
                 }
             });
         }

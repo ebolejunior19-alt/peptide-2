@@ -21,6 +21,15 @@
         .btn:hover { background: #00357a; }
         .info-list { margin-top: 16px; color: #475569; line-height: 1.8; }
         .info-list li { margin-bottom: 10px; }
+        .age-gate-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.78); display: grid; place-items: center; z-index: 9999; padding: 20px; }
+        .age-gate-card { background: white; border-radius: 24px; max-width: 520px; width: 100%; padding: 32px; box-shadow: 0 28px 70px rgba(15,23,42,0.18); text-align: center; }
+        .age-gate-card h2 { font-size: 28px; color: #111827; margin-bottom: 12px; }
+        .age-gate-card p { color: #4b5563; line-height: 1.8; margin-bottom: 24px; }
+        .age-gate-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+        .age-gate-actions button { width: 160px; }
+        .age-gate-actions .btn-secondary { background: #e5e7eb; color: #111827; border: 1px solid #cbd5e1; }
+        .age-gate-actions .btn-secondary:hover { background: #dbeafe; color: #111827; }
+        .age-gate-decline { margin-top: 18px; color: #dc2626; font-weight: 700; display: none; }
         @media (max-width: 780px) { .page-wrap { padding: 20px; } }
         .site-footer { background: #111827; color: #d1d5db; padding: 52px 40px 24px; }
         .footer-grid { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; }
@@ -64,6 +73,17 @@
             <button class="btn" onclick="registerUser()">Create Account</button>
             <p id="registerMessage" style="margin-top: 16px; color: #dc2626; display: none;"></p>
             <p class="info-list">Already have an account? <a href="login.html" style="color:#004aad; font-weight:700;">Sign in</a></p>
+        </div>
+    </div>
+    <div class="age-gate-overlay" id="ageGateOverlay">
+        <div class="age-gate-card">
+            <h2>Age Verification</h2>
+            <p>To continue, please confirm that you are 18 years of age or older.</p>
+            <div class="age-gate-actions">
+                <button class="btn" id="ageGateYes" type="button">Yes, I am 18+</button>
+                <button class="btn btn-secondary" id="ageGateNo" type="button">No, I am under 18</button>
+            </div>
+            <p class="age-gate-decline" id="ageGateDecline">Sorry, you must be 18 or older to create an account.</p>
         </div>
     </div>
     <script>
@@ -117,7 +137,27 @@
             window.location.href = 'profile.html';
         }
 
-        document.addEventListener('DOMContentLoaded', redirectIfSignedIn);
+        document.addEventListener('DOMContentLoaded', () => {
+            redirectIfSignedIn();
+            const ageGateOverlay = document.getElementById('ageGateOverlay');
+            const ageGateYes = document.getElementById('ageGateYes');
+            const ageGateNo = document.getElementById('ageGateNo');
+            const ageGateDecline = document.getElementById('ageGateDecline');
+
+            if (ageGateOverlay && ageGateYes && ageGateNo && ageGateDecline) {
+                ageGateOverlay.style.display = 'grid';
+                ageGateYes.addEventListener('click', () => {
+                    ageGateOverlay.style.display = 'none';
+                });
+                ageGateNo.addEventListener('click', () => {
+                    ageGateDecline.style.display = 'block';
+                    setTimeout(() => {
+                        ageGateOverlay.style.display = 'none';
+                        window.location.href = 'index.html';
+                    }, 2200);
+                });
+            }
+        });
     </script>
 </body>
 </html>

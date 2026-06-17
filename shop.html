@@ -140,20 +140,30 @@
     </div>
 
     <script>
-        const categories = ['All Peptides', 'Metabolic', 'Regenerative', 'Longevity', 'Performance', 'Reproductive', 'Composition'];
+        const categories = ['All Peptides', 'Metabolic', 'Regenerative', 'Longevity', 'Performance', 'Reproductive', 'Composition', 'Cognitive'];
         const products = [
+            { id: 'cjc1295-ipamorelin', name: 'CJC-1295 + Ipamorelin', dosage: '5/5 mg', category: 'Performance', price: 115.00, image: './image1_files/CJC1295-Ipamorelin-10-mg-2-v2.jpeg', description: 'Growth hormone-releasing peptide combination for muscle growth and recovery.' },
+            { id: 'tesamorelin-cjc1295-ipamorelin-blend', name: 'Tesamorelin + CJC-1295 + Ipamorelin Blend', dosage: 'Blend', category: 'Regenerative', price: 195.00, image: './image1_files/Tesamorelin-CJC-1295-Ipamorelin-Blend-Bottle-v2.jpeg', description: 'Pre-formulated blend for recovery, fat reduction, and regenerative support.' },
+            { id: 'tesamorelin-ipamorelin-blend', name: 'Tesamorelin + Ipamorelin Blend', dosage: 'Blend', category: 'Regenerative', price: 150.00, image: './image1_files/Tesamorelin-Ipamorelin-Blend-Bottle-v2.jpeg', description: 'Ready-to-use peptide blend for recovery and metabolic balance.' },
+            { id: 'bpc157-tb500', name: 'BPC-157 + TB-500', dosage: '5/5 mg', category: 'Regenerative', price: 110.00, image: './image1_files/BPCTB-10-v2.jpeg', description: 'Dual regenerative peptide formula for enhanced tissue and muscle recovery.' },
             { id: 'ghk-cu', name: 'GHK-Cu', dosage: '50 mg', category: 'Longevity', price: 80.00, image: './image1_files/GHK-Cu-50-mg-2-v2.jpeg', description: 'Copper peptide for skin, recovery, and collagen support.' },
             { id: 'retatrutide', name: 'Retatrutide', dosage: '5 mg', category: 'Metabolic', price: 125.00, image: './image1_files/Retatrutide-5-mg-2-v2.jpeg', description: 'Advanced peptide designed for metabolic balance and body composition.' },
+            { id: 'semax', name: 'Semax', dosage: '5 mg', category: 'Cognitive', price: 105.00, image: './image1_files/Semax-5-mg-2-v2.jpeg', description: 'Cognitive enhancement peptide for focus, memory, and mental clarity.' },
+            { id: 'epithalon', name: 'Epithalon', dosage: '10 mg', category: 'Longevity', price: 95.00, image: './image1_files/Epithalon-10-mg-2-v2.jpeg', description: 'Telomerase-activating peptide for cellular longevity and anti-aging support.' },
+            { id: 'bac-water', name: 'BAC Water', dosage: '3 ml', category: 'Composition', price: 25.00, image: './image1_files/BAC-Water-3ML-vial-v2.png', description: 'Bacteriostatic water for peptide reconstitution - high purity.' },
             { id: 'cagrilintide', name: 'Cagrilintide', dosage: '5 mg', category: 'Metabolic', price: 125.00, image: './image1_files/Cagrilintide-5-mg-2-v2.jpeg', description: 'Weight-management peptide with appetite and energy benefits.' },
             { id: 'tirzepatide', name: 'Tirzepatide', dosage: '10 mg', category: 'Metabolic', price: 145.00, image: './image1_files/Tirzepatide-10-mg-2-v2.jpeg', description: 'Popular peptide for metabolic and weight regulation support.' },
             { id: 'mots-c', name: 'MOTS-C', dosage: '10 mg', category: 'Longevity', price: 155.00, image: './image1_files/MOTS-C-10-mg-2-v2.jpeg', description: 'Mitochondrial peptide that supports metabolism and energy.' },
             { id: 'tesamorelin', name: 'Tesamorelin', dosage: '5 mg', category: 'Performance', price: 145.00, image: './image1_files/Tesamorelin-5-mg-2-v2.jpeg', description: 'Growth hormone-releasing peptide for fat reduction and vitality.' },
             { id: 'aod9604', name: 'AOD9604', dosage: '5 mg', category: 'Metabolic', price: 95.00, image: './image1_files/AOD9604-5MG-v2.jpeg', description: 'Fat-reduction peptide often used in metabolic support programs.' },
             { id: 'bpc157', name: 'BPC-157', dosage: '5 mg', category: 'Regenerative', price: 75.00, image: './image1_files/BPC-5-v2.jpeg', description: 'Regenerative peptide for muscle recovery and joint support.' },
+            { id: 'tb500', name: 'TB-500', dosage: '5 mg', category: 'Regenerative', price: 85.00, image: './image1_files/TB500-5-mg-Thymosin-Beta-4-Acetate-2-v2.jpeg', description: 'Thymosin Beta-4 for rapid tissue repair and athletic recovery.' },
             { id: 'glow-blend', name: 'Glow Blend', dosage: '70 mg', category: 'Composition', price: 160.00, image: './image1_files/Glow-Blend-v2.jpeg', description: 'Advanced blend to support skin health and radiance.' },
             { id: 'll37', name: 'LL37', dosage: '5 mg', category: 'Regenerative', price: 165.00, image: './image1_files/LL37-5-mg-2-v2.jpeg', description: 'Regenerative peptide with powerful immune and healing support.' },
             { id: 'oxytocin', name: 'Oxytocin', dosage: '2 mg', category: 'Reproductive', price: 65.00, image: './image1_files/Oxytocin-2-mg-2-v2.jpeg', description: 'Peptide with mood, recovery, and social wellness benefits.' },
-            { id: 'pt-141', name: 'PT-141', dosage: '10 mg', category: 'Performance', price: 105.00, image: './image1_files/PT-141-10-mg-2-v2.jpeg', description: 'Performance peptide used for sexual wellness and endurance.' }
+            { id: 'pt-141', name: 'PT-141', dosage: '10 mg', category: 'Performance', price: 105.00, image: './image1_files/PT-141-10-mg-2-v2.jpeg', description: 'Performance peptide used for sexual wellness and endurance.' },
+            { id: 'ipamorelin', name: 'Ipamorelin', dosage: '5 mg', category: 'Performance', price: 95.00, image: './image1_files/Ipamorelin-5-mg-2-v2.jpeg', description: 'Growth hormone secretagogue for lean muscle development.' },
+            { id: 'Oxytocin-2-mg-2-v2.jpeg', name: 'Oxytocin', dosage: 'Multi-Pack', category: 'Composition', price: 220.00, image: './image1_files/Oxytocin-2-mg-2-v2.jpeg', description: 'Complete starter kit with popular peptides for comprehensive wellness.' }
         ];
 
         let cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
